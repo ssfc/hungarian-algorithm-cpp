@@ -55,7 +55,11 @@ Hungarian::Hungarian(const std::string &input_filename):
 
 void Hungarian::brute_force()
 {
-    vector<int> job_assignment = {0, 1, 2};
+    std::vector<int> job_assignment(num_columns);
+    for (int i = 0; i < num_columns; ++i)
+    {
+        job_assignment[i] = i;
+    }
 
     int min_cost = INT_MAX;
     vector<int> best_job_assignment;
