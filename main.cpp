@@ -8,7 +8,7 @@
 
 int main()
 {
-    Hungarian("../example2.txt");
+    Hungarian("../example3.txt");
     // std::cout << "hello" << std::endl;
 
 
