@@ -27,6 +27,7 @@ Hungarian::Hungarian(const std::string &input_filename):
             for (int j = 0; j < num_columns; j++)
             {
                 map_file >> cost_matrix[i][j];
+                cost_matrix[i][j] *= -1;
             }
         }
 

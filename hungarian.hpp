@@ -17,7 +17,7 @@ class Hungarian
 private:
     int num_rows;
     int num_columns;
-    std::vector<std::vector<double>> cost_matrix;
+    std::vector<std::vector<int>> cost_matrix;
 
 public:
     explicit Hungarian(const std::string& input_filename);
