@@ -8,8 +8,8 @@
 
 int main()
 {
-    Hungarian("example2.txt");
-
+    Hungarian("../example2.txt");
+    // std::cout << "hello" << std::endl;
 
 
 
