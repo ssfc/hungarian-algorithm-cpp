@@ -21,6 +21,8 @@ private:
 public:
     explicit Hungarian(const std::string& input_filename);
 
+    void brute_force();
+
 };
 
 #endif // HUNGARIAN_HPP
