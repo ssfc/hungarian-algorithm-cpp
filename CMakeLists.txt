@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(hungarian_assign main.cpp
         hungarian.hpp hungarian.cpp)
 
-add_executable(brute_force brute_force.cpp)
 
 
 
