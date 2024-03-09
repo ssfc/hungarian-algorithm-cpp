@@ -8,5 +8,10 @@
 
 int main()
 {
+    Hungarian("example2.txt");
+
+
+
+
     return 0;
 }
