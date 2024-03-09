@@ -8,10 +8,10 @@
 
 int main()
 {
-    Hungarian("../example2.txt");
+    Hungarian test("../example2.txt");
     // std::cout << "hello" << std::endl;
 
-
+    test.brute_force();
 
     return 0;
 }

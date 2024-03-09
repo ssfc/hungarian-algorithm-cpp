@@ -5,6 +5,7 @@
 #ifndef HUNGARIAN_HPP
 #define HUNGARIAN_HPP
 
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <string>
