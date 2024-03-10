@@ -61,9 +61,9 @@ Hungarian::Hungarian(const std::string &input_filename):
 
         // test cost input
 
-        for (int i = 0; i < num_rows; i++)
+        for (int i = 0; i < square_matrix_size; i++)
         {
-            for (int j = 0; j < num_columns; j++)
+            for (int j = 0; j < square_matrix_size; j++)
             {
                 std::cout << cost_matrix[i][j] << " ";
             }
