@@ -257,6 +257,10 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
             return true;
         }
 
+        // While there is some choice in every marked column.
+
+
+
         iter_line++;
     }
 }
