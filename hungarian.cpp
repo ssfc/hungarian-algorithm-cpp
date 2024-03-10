@@ -60,7 +60,7 @@ Hungarian::Hungarian(const std::string &input_filename):
         }
 
         // test cost input
-
+        /*
         for (int i = 0; i < square_matrix_size; i++)
         {
             for (int j = 0; j < square_matrix_size; j++)
@@ -86,36 +86,36 @@ Hungarian::Hungarian(const std::string &input_filename):
 
 void Hungarian::brute_force()
 {
-    std::vector<int> job_assignment(square_matrix_size);
+    std::vector<int> work_assignment(square_matrix_size);
     for (int i = 0; i < square_matrix_size; ++i)
     {
-        job_assignment[i] = i;
+        work_assignment[i] = i;
     }
 
     int min_cost = INT_MAX;
-    vector<int> best_job_assignment;
+    vector<int> best_work_assignment;
 
     do
     {
         int current_cost = 0;
         for(int i = 0; i < square_matrix_size; i++)
         {
-            current_cost += cost_matrix[i][job_assignment[i]];
+            current_cost += cost_matrix[i][work_assignment[i]];
         }
 
         if(current_cost < min_cost)
         {
             min_cost = current_cost;
-            best_job_assignment = job_assignment;
+            best_work_assignment = work_assignment;
         }
-    } while(std::next_permutation(job_assignment.begin(), job_assignment.end()));
+    } while(std::next_permutation(work_assignment.begin(), work_assignment.end()));
 
     std::cout << "min cost: " << min_cost << std::endl;
     std::cout << "assign: " << std::endl;
 
     for(int i = 0; i < square_matrix_size; i++)
     {
-        std::cout << "worker " << i << " assignment " << best_job_assignment[i] << std::endl;
+        std::cout << "worker " << i << " assignment " << best_work_assignment[i] << std::endl;
     }
 }
 
