@@ -86,6 +86,7 @@ Hungarian::Hungarian(const std::string &input_filename):
 
 void Hungarian::hungarian_solve()
 {
+    // transformed_matrix = self._cost_matrix.copy()
 
 }
 
@@ -98,12 +99,12 @@ void Hungarian::brute_force()
         work_assignment[i] = i;
     }
 
-    int min_cost = INT_MAX;
+    double min_cost = std::numeric_limits<double>::max();
     vector<int> best_work_assignment;
 
     do
     {
-        int current_cost = 0;
+        double current_cost = 0;
         for(int i = 0; i < square_matrix_size; i++)
         {
             current_cost += cost_matrix[i][work_assignment[i]];

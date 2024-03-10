@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <limits>
 #include <string>
 #include <vector>
 
@@ -16,7 +17,7 @@ class Hungarian
 {
 private:
     int square_matrix_size;
-    std::vector<std::vector<int>> cost_matrix;
+    std::vector<std::vector<double>> cost_matrix;
 
 public:
     explicit Hungarian(const std::string& input_filename);
