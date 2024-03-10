@@ -51,6 +51,8 @@ public:
 
     int mark_new_columns_with_zeros_in_marked_rows();
 
+    bool choice_in_all_marked_columns();
+
     // debug func
     bool is_double_equal(double x, double y, double epsilon = 1e-9)
     {

@@ -258,6 +258,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         }
 
         // While there is some choice in every marked column.
+        int iter_choice = 0;
 
 
 
@@ -305,6 +306,12 @@ int CoverZeros::mark_new_columns_with_zeros_in_marked_rows()
     }
 
     return num_marked_columns;
+}
+
+
+bool CoverZeros::choice_in_all_marked_columns()
+{
+    
 }
 
 
