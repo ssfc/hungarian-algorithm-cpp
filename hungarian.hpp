@@ -21,6 +21,8 @@ private:
 public:
     explicit Hungarian(const std::string& input_filename);
 
+    void hungarian_solve();
+
     void brute_force();
 
 };

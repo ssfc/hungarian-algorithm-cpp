@@ -84,6 +84,12 @@ Hungarian::Hungarian(const std::string &input_filename):
 }
 
 
+void Hungarian::hungarian_solve()
+{
+
+}
+
+
 void Hungarian::brute_force()
 {
     std::vector<int> work_assignment(square_matrix_size);
