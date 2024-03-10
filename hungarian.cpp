@@ -124,6 +124,9 @@ void Hungarian::hungarian_solve()
 
     while(total_covered < square_matrix_size && iter < 1)
     {
+        CoverZeros cover_zeros(transformed_matrix);
+
+
         iter++;
     }
 
