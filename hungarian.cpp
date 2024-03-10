@@ -115,7 +115,7 @@ void Hungarian::hungarian_solve()
     }
 
     // check after step 2.
-    print_double_matrix(transformed_matrix);
+    // print_double_matrix(transformed_matrix);
 
 
 
