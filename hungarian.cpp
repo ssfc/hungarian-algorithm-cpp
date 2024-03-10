@@ -259,7 +259,10 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
         // While there is some choice in every marked column.
         int iter_choice = 0;
-
+        while(choice_in_all_marked_columns() && iter_choice < 1)
+        {
+            iter_choice++;
+        }
 
 
         iter_line++;
