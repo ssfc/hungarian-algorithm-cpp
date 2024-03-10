@@ -91,13 +91,35 @@ void Hungarian::hungarian_solve()
     // Step 1: Subtract row mins from each row.
     for(auto& row : transformed_matrix)
     {  // 遍历每一行
-        double min_val = *std::min_element(row.begin(), row.end());  // 找到当前行的最小值
+        double row_min_value = *std::min_element(row.begin(), row.end());  // 找到当前行的最小值
         std::transform(row.begin(), row.end(), row.begin(),
-                       [min_val](double x) { return x - min_val; });  // 从每一行中减去最小值
+                       [row_min_value](double x) { return x - row_min_value; });  // 从每一行中减去最小值
     }
 
     // check after step 1.
     // print_double_matrix(transformed_matrix);
+
+    // Step 2: Subtract column mins from each column.
+    for (size_t column_index = 0; column_index < square_matrix_size; column_index++)
+    {
+        double column_min_value = transformed_matrix[0][column_index];
+        for (size_t row_index = 1; row_index < square_matrix_size; row_index++)
+        {
+            column_min_value = std::min(column_min_value, transformed_matrix[row_index][column_index]);
+        }
+
+        for (auto &each_row : transformed_matrix)
+        {
+            each_row[column_index] -= column_min_value;
+        }
+    }
+
+    // check after step 2.
+    print_double_matrix(transformed_matrix);
+
+
+
+
 }
 
 
