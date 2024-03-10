@@ -117,8 +117,9 @@ void Hungarian::hungarian_solve()
     // check after step 2.
     // print_double_matrix(transformed_matrix);
 
-
-
+    // Step 3: Use minimum number of lines to cover all zeros in the matrix.
+    // 覆盖线有可能是竖线也有可能是横线
+    int iter = 0;
 
 }
 
@@ -201,6 +202,8 @@ CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
     {
         choices[i].resize(input_matrix[i].size(), false);
     }
+
+    compute_min_lines_to_cover_zeros();
 
 }
 
