@@ -223,6 +223,10 @@ void CoverZeros::compute_min_lines_to_cover_zeros()
     // cout << "compute_min_lines" << endl;
     while(true && iter_line < 1)
     {
+        // Erase all marks.
+        marked_rows.clear();
+        marked_columns.clear();
+
         iter_line++;
     }
 }
