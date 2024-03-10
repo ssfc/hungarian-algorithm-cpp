@@ -39,6 +39,8 @@ private:
     std::vector<int> marked_rows;
     std::vector<int> marked_columns;
 
+    std::vector<std::vector<bool>> choices;
+
 public:
     explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
 
@@ -49,6 +51,8 @@ public:
     {
         return std::abs(x - y) < epsilon;
     }
+
+    void print_int_vector(const std::vector<int>& input_vector);
 };
 
 #endif // HUNGARIAN_HPP

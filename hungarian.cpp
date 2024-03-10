@@ -206,7 +206,7 @@ CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
     square_matrix_size = input_matrix.size();
 
     // Choices starts without any choices made.
-    std::vector<std::vector<bool>> choices(input_matrix.size());
+    choices.resize(input_matrix.size());
     for (size_t i = 0; i < input_matrix.size(); i++)
     {
         choices[i].resize(input_matrix[i].size(), false);
@@ -227,7 +227,29 @@ void CoverZeros::compute_min_lines_to_cover_zeros()
         marked_rows.clear();
         marked_columns.clear();
 
+        // Mark all rows in which no choice has been made.
+        // 如果一行中没有任何非零元素（即该行所有元素都为0或假），则将该行的索引添加到self._marked_rows这个列表中。
+        for(size_t i = 0; i < choices.size(); i++)
+        {
+            if(std::none_of(choices[i].begin(), choices[i].end(), [](bool x){return x;}))
+            {
+                marked_rows.push_back(i);
+            }
+        }
+
+        cout << "marked_rows: ";
+        print_int_vector(marked_rows);
+
         iter_line++;
     }
 }
 
+
+void CoverZeros::print_int_vector(const std::vector<int>& input_vector)
+{
+    for(auto element : input_vector)
+    {
+        cout << element << " ";
+    }
+    cout << endl;
+}
