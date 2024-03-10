@@ -175,6 +175,22 @@ void Hungarian::print_double_matrix(const std::vector<std::vector<double>>& inpu
 
 CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
 {
+    std::vector<std::vector<bool>> zero_locations(input_matrix.size());
 
+    for (size_t i = 0; i < input_matrix.size(); i++)
+    {
+        zero_locations[i].resize(input_matrix[i].size());
+        for (size_t j = 0; j < input_matrix[i].size(); j++)
+        {
+            if (is_double_equal(input_matrix[i][j], 0))
+            {
+                zero_locations[i][j] = true;
+            }
+            else
+            {
+                zero_locations[i][j] = false;
+            }
+        }
+    }
 }
 
