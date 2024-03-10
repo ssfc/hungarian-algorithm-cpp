@@ -173,3 +173,8 @@ void Hungarian::print_double_matrix(const std::vector<std::vector<double>>& inpu
 }
 
 
+CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
+{
+
+}
+

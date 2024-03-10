@@ -13,6 +13,11 @@
 #include <vector>
 
 
+bool is_double_equal(double x, double y, double epsilon = 1e-9)
+{
+    return std::abs(x - y) < epsilon;
+}
+
 class Hungarian
 {
 private:
@@ -38,8 +43,7 @@ private:
 
 
 public:
-
-    
+    explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
 };
 
 #endif // HUNGARIAN_HPP
