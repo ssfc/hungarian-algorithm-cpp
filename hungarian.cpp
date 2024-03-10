@@ -311,7 +311,20 @@ int CoverZeros::mark_new_columns_with_zeros_in_marked_rows()
 
 bool CoverZeros::choice_in_all_marked_columns()
 {
-    
+    bool choice_in_all_marked_columns = true;
+
+    for (auto column_index: marked_columns)
+    {
+        if (std::none_of(choices.begin(), choices.end(),
+                         [column_index](const std::vector<bool>& row){ return row[column_index]; }))
+        {
+            choice_in_all_marked_columns = false;
+
+            break;
+        }
+    }
+
+    return choice_in_all_marked_columns;
 }
 
 
