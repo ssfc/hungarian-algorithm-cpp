@@ -111,7 +111,7 @@ void Hungarian::brute_force()
     } while(std::next_permutation(work_assignment.begin(), work_assignment.end()));
 
     std::cout << "min cost: " << min_cost << std::endl;
-    std::cout << "assign: " << std::endl;
+    std::cout << "work assign: " << std::endl;
 
     for(int i = 0; i < square_matrix_size; i++)
     {
