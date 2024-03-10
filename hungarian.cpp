@@ -202,8 +202,11 @@ CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
         choices[i].resize(input_matrix[i].size(), false);
     }
 
+}
 
 
+void CoverZeros::compute_min_lines_to_cover_zeros()
+{
 
 }
 

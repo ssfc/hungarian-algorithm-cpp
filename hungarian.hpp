@@ -42,6 +42,8 @@ private:
 public:
     explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
 
+    void compute_min_lines_to_cover_zeros();
+
     // debug func
     bool is_double_equal(double x, double y, double epsilon = 1e-9)
     {
