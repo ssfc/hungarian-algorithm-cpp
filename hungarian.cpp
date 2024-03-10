@@ -247,7 +247,9 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         }
 
         // Mark all columns not already marked which have zeros in marked rows.
-
+        int num_marked_columns = mark_new_columns_with_zeros_in_marked_rows();
+        cout << "num_marked_columns:" << num_marked_columns << endl;
+        print_int_vector(marked_columns);
 
 
         iter_line++;
