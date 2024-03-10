@@ -186,7 +186,7 @@ void Hungarian::print_double_matrix(const std::vector<std::vector<double>>& inpu
 CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
 {
     // 找到输入矩阵中0的位置
-    std::vector<std::vector<bool>> zero_locations(input_matrix.size());
+    zero_locations.resize(input_matrix.size());
     for (size_t i = 0; i < input_matrix.size(); i++)
     {
         zero_locations[i].resize(input_matrix[i].size());

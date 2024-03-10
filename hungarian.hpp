@@ -35,6 +35,8 @@ public:
 class CoverZeros
 {
 private:
+    std::vector<std::vector<bool>> zero_locations;
+
     size_t square_matrix_size;
     std::vector<int> marked_rows;
     std::vector<int> marked_columns;
