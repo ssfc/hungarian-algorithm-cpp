@@ -31,4 +31,15 @@ public:
 
 };
 
+
+class CoverZeros
+{
+private:
+
+
+public:
+
+    
+};
+
 #endif // HUNGARIAN_HPP
