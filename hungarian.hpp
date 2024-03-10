@@ -26,6 +26,9 @@ public:
 
     void brute_force();
 
+    // debug func
+    static void print_double_matrix(const std::vector<std::vector<double>>& input_matrix);
+
 };
 
 #endif // HUNGARIAN_HPP

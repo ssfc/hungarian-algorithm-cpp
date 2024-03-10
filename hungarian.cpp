@@ -86,8 +86,16 @@ Hungarian::Hungarian(const std::string &input_filename):
 
 void Hungarian::hungarian_solve()
 {
-    // transformed_matrix = self._cost_matrix.copy()
+    std::vector<std::vector<double>> transformed_matrix = cost_matrix;
 
+    for(auto& row : transformed_matrix)
+    {  // 遍历每一行
+        double min_val = *std::min_element(row.begin(), row.end());  // 找到当前行的最小值
+        std::transform(row.begin(), row.end(), row.begin(),
+                       [min_val](double x) { return x - min_val; });  // 从每一行中减去最小值
+    }
+
+    print_double_matrix(transformed_matrix);
 }
 
 
@@ -125,4 +133,19 @@ void Hungarian::brute_force()
         std::cout << "worker " << i << " assignment " << best_work_assignment[i] << std::endl;
     }
 }
+
+
+void Hungarian::print_double_matrix(const std::vector<std::vector<double>>& input_matrix)
+{
+    for (auto & each_row : input_matrix)
+    {
+        for (double each_element : each_row)
+        {
+            std::cout << each_element << " ";
+        }
+
+        std::cout << std::endl;
+    }
+}
+
 
