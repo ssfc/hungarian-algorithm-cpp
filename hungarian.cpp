@@ -251,6 +251,11 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         cout << "num_marked_columns:" << num_marked_columns << endl;
         print_int_vector(marked_columns);
 
+        // If no new marked columns then finish.
+        if(num_marked_columns == 0)
+        {
+            return true;
+        }
 
         iter_line++;
     }
