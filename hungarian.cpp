@@ -96,7 +96,8 @@ void Hungarian::hungarian_solve()
                        [min_val](double x) { return x - min_val; });  // 从每一行中减去最小值
     }
 
-    print_double_matrix(transformed_matrix);
+    // check after step 1.
+    // print_double_matrix(transformed_matrix);
 }
 
 
