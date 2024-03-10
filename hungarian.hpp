@@ -36,6 +36,8 @@ class CoverZeros
 {
 private:
     size_t square_matrix_size;
+    std::vector<int> marked_rows;
+    std::vector<int> marked_columns;
 
 public:
     explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
