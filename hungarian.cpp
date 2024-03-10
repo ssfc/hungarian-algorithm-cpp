@@ -261,6 +261,9 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         int iter_choice = 0;
         while(choice_in_all_marked_columns() && iter_choice < 1)
         {
+            // Some Choice in every marked column.
+            // Mark all rows not already marked which have choices in marked columns.
+
             iter_choice++;
         }
 
