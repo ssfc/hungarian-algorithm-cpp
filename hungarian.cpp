@@ -219,6 +219,11 @@ CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
 
 void CoverZeros::compute_min_lines_to_cover_zeros()
 {
-
+    int iter_line = 0;
+    // cout << "compute_min_lines" << endl;
+    while(true && iter_line < 1)
+    {
+        iter_line++;
+    }
 }
 
