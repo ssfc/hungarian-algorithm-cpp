@@ -30,6 +30,28 @@ Hungarian::Hungarian(const std::string &input_filename):
             }
         }
 
+        if (num_rows != num_columns)
+        {
+            // 计算需要添加的行数或列数
+            int size_diff = std::abs(num_rows - num_columns);
+            if (num_rows < num_columns)
+            {
+                // 如果行数少于列数，添加新的行
+                for (int i = 0; i < size_diff; ++i)
+                {
+                    cost_matrix.emplace_back(num_columns, 0);
+                }
+            }
+            else
+            {
+                // 如果列数少于行数，为每行添加新的列
+                for(auto& each_row : cost_matrix)
+                {
+                    each_row.insert(each_row.end(), size_diff, 0);
+                }
+            }
+        }
+
         // test cost input
         /*
         for (int i = 0; i < num_rows; i++)
