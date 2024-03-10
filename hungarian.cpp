@@ -8,12 +8,13 @@ using namespace std;
 
 
 Hungarian::Hungarian(const std::string &input_filename):
-    num_rows(0),
-    num_columns(0)
+    square_matrix_size(0)
 {
     std::ifstream map_file(input_filename);
     if (map_file.is_open())
     {
+        int num_rows;
+        int num_columns;
         map_file >> num_rows >> num_columns;
 
         cost_matrix.resize(num_rows);
@@ -36,6 +37,7 @@ Hungarian::Hungarian(const std::string &input_filename):
             int size_diff = std::abs(num_rows - num_columns);
             if (num_rows < num_columns)
             {
+                square_matrix_size = num_columns;
                 // 如果行数少于列数，添加新的行
                 for (int i = 0; i < size_diff; ++i)
                 {
@@ -44,12 +46,17 @@ Hungarian::Hungarian(const std::string &input_filename):
             }
             else
             {
+                square_matrix_size = num_rows;
                 // 如果列数少于行数，为每行添加新的列
                 for(auto& each_row : cost_matrix)
                 {
                     each_row.insert(each_row.end(), size_diff, 0);
                 }
             }
+        }
+        else
+        {
+            square_matrix_size = num_rows;
         }
 
         // test cost input
@@ -78,8 +85,8 @@ Hungarian::Hungarian(const std::string &input_filename):
 
 void Hungarian::brute_force()
 {
-    std::vector<int> job_assignment(num_columns);
-    for (int i = 0; i < num_columns; ++i)
+    std::vector<int> job_assignment(square_matrix_size);
+    for (int i = 0; i < square_matrix_size; ++i)
     {
         job_assignment[i] = i;
     }
@@ -90,7 +97,7 @@ void Hungarian::brute_force()
     do
     {
         int current_cost = 0;
-        for(int i = 0; i < num_rows; i++)
+        for(int i = 0; i < square_matrix_size; i++)
         {
             current_cost += cost_matrix[i][job_assignment[i]];
         }
@@ -105,7 +112,7 @@ void Hungarian::brute_force()
     std::cout << "min cost: " << min_cost << std::endl;
     std::cout << "assign: " << std::endl;
 
-    for(int i = 0; i < num_rows; i++)
+    for(int i = 0; i < square_matrix_size; i++)
     {
         std::cout << "worker " << i << " assignment " << best_job_assignment[i] << std::endl;
     }
