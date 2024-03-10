@@ -8,7 +8,7 @@
 
 int main()
 {
-    Hungarian test("../example2.txt");
+    Hungarian test("../example3.txt");
     // std::cout << "hello" << std::endl;
 
     test.hungarian_solve();
