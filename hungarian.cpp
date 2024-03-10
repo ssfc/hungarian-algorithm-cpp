@@ -120,6 +120,12 @@ void Hungarian::hungarian_solve()
     // Step 3: Use minimum number of lines to cover all zeros in the matrix.
     // 覆盖线有可能是竖线也有可能是横线
     int iter = 0;
+    int total_covered = 0;
+
+    while(total_covered < square_matrix_size && iter < 1)
+    {
+        iter++;
+    }
 
 }
 
