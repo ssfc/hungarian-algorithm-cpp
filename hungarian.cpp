@@ -88,6 +88,7 @@ void Hungarian::hungarian_solve()
 {
     std::vector<std::vector<double>> transformed_matrix = cost_matrix;
 
+    // Step 1: Subtract row mins from each row.
     for(auto& row : transformed_matrix)
     {  // 遍历每一行
         double min_val = *std::min_element(row.begin(), row.end());  // 找到当前行的最小值
