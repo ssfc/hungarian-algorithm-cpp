@@ -255,6 +255,48 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 }
 
 
+int CoverZeros::mark_new_columns_with_zeros_in_marked_rows()
+{
+    int num_marked_columns = 0;
+    std::set<int> marked_rows_set(marked_rows.begin(), marked_rows.end()); // 初始把所有的已标记行放入一个set，方便查询
+
+    for(size_t column_index = 0; column_index < zero_locations[0].size(); ++column_index) // 遍历每一列
+    {
+        // 判断该列是否已经被标记
+        if(std::find(marked_columns.begin(), marked_columns.end(), column_index) != marked_columns.end())
+        {
+            continue;
+        }
+
+        // 检测这一列是否在已标记的行中存在0
+        std::set<int> rows_with_zero;
+        for(size_t i = 0; i < zero_locations.size(); ++i)
+        {
+            if(zero_locations[i][column_index])
+            {
+                rows_with_zero.insert(i);
+            }
+        }
+
+        // 如果这一列在已标记行中存在0，就把这一列标记起来
+        std::set<int> intersect_rows;
+        std::set_intersection(
+                rows_with_zero.begin(), rows_with_zero.end(),
+                marked_rows_set.begin(), marked_rows_set.end(),
+                std::inserter(intersect_rows, intersect_rows.begin())
+        );
+
+        if(!intersect_rows.empty())
+        {
+            marked_columns.push_back(column_index);
+            ++num_marked_columns;
+        }
+    }
+
+    return num_marked_columns;
+}
+
+
 void CoverZeros::print_int_vector(const std::vector<int>& input_vector)
 {
     for(auto element : input_vector)

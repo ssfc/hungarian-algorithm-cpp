@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <limits>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -47,6 +48,8 @@ public:
     explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
 
     bool compute_min_lines_to_cover_zeros();
+
+    int mark_new_columns_with_zeros_in_marked_rows();
 
     // debug func
     bool is_double_equal(double x, double y, double epsilon = 1e-9)
