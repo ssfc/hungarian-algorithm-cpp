@@ -305,7 +305,15 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
             cout << "iter_choice_column_index: " << iter_choice_column_index << endl;
 
             // Find a zero in the column indexed that does not have a row with a choice.
-            // int choice_row_index = find_row_without_choice(choice_column_index)
+            int choice_row_index = find_row_without_choice(choice_column_index);
+
+            // Check if an available row was found.
+            int new_choice_column_index = -1;
+            if(choice_row_index != -1)
+            {
+                // Find a good row to accommodate swap. Find its column pair.
+
+            }
 
         }
 
