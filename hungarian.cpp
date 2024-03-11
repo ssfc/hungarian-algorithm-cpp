@@ -275,6 +275,9 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
                 return true;
             }
 
+            // Mark all columns not already marked which have zeros in marked rows.
+            num_marked_columns = mark_new_columns_with_zeros_in_marked_rows();
+
 
             iter_choice++;
         }
