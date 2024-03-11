@@ -124,6 +124,8 @@ void Hungarian::hungarian_solve()
 
     while(total_covered < square_matrix_size && iter_step3 < 1)
     {
+        cout << "iter_step3: " << iter_step3 << endl;
+
         CoverZeros cover_zeros(transformed_matrix);
 
 
@@ -223,6 +225,8 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
     // cout << "compute_min_lines" << endl;
     while(true && iter_line < 1)
     {
+        cout << "iter_line: " << iter_line << endl;
+
         // Erase all marks.
         marked_rows.clear();
         marked_columns.clear();
@@ -263,6 +267,8 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         int iter_choice = 0;
         while(choice_in_all_marked_columns() && iter_choice < 1)
         {
+            cout << "iter_choice: " << iter_choice << endl;
+
             // Some Choice in every marked column.
             // Mark all rows not already marked which have choices in marked columns.
             int num_marked_rows = mark_new_rows_with_choices_in_marked_columns();
@@ -277,6 +283,15 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
             // Mark all columns not already marked which have zeros in marked rows.
             num_marked_columns = mark_new_columns_with_zeros_in_marked_rows();
+
+            // If no new marked columns then finish.
+            if(num_marked_columns == 0)
+            {
+                cout << "no new marked columns" << endl;
+
+                return true;
+            }
+
 
 
             iter_choice++;
