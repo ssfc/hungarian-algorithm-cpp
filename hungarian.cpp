@@ -254,6 +254,8 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         // If no new marked columns then finish.
         if(num_marked_columns == 0)
         {
+            cout << "no new marked columns" << endl;
+
             return true;
         }
 
@@ -263,6 +265,16 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         {
             // Some Choice in every marked column.
             // Mark all rows not already marked which have choices in marked columns.
+            int num_marked_rows = mark_new_rows_with_choices_in_marked_columns();
+
+            // If no new marks then Finish.
+            if(num_marked_rows == 0)
+            {
+                cout << "no new marked rows" << endl;
+
+                return true;
+            }
+
 
             iter_choice++;
         }
