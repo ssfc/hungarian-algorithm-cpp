@@ -292,10 +292,11 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
                 return true;
             }
 
-
-
             iter_choice++;
         }
+
+        // No choice in one or more marked columns.
+        // Find a marked column that does not have a choice.
 
 
         iter_line++;
