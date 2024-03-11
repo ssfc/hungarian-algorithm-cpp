@@ -51,6 +51,8 @@ public:
 
     int mark_new_columns_with_zeros_in_marked_rows();
 
+    int mark_new_rows_with_choices_in_marked_columns();
+
     bool choice_in_all_marked_columns();
 
     // debug func

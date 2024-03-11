@@ -315,6 +315,34 @@ int CoverZeros::mark_new_columns_with_zeros_in_marked_rows()
 }
 
 
+int CoverZeros::mark_new_rows_with_choices_in_marked_columns()
+{
+    int num_marked_rows = 0;
+    for(size_t i = 0; i < choices.size(); ++i)
+    { // 遍历每一行
+        // 判断该行是否已经被标记
+        if(std::find(marked_rows.begin(), marked_rows.end(), i) != marked_rows.end())
+        {
+            continue;
+        }
+
+        // 检测这一行是否在已标记的列中存在选择
+        for(size_t j = 0; j < choices[i].size(); ++j)
+        {
+            if(choices[i][j] && (std::find(marked_columns.begin(), marked_columns.end(), j) != marked_columns.end()))
+            {
+                marked_rows.push_back(i);
+                ++num_marked_rows;
+
+                break;
+            }
+        }
+    }
+
+    return num_marked_rows;
+}
+
+
 bool CoverZeros::choice_in_all_marked_columns()
 {
     bool choice_in_all_marked_columns = true;
