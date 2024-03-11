@@ -297,6 +297,18 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
         // No choice in one or more marked columns.
         // Find a marked column that does not have a choice.
+        int choice_column_index = find_marked_column_without_choice();
+
+        int iter_choice_column_index = 0;
+        while(choice_column_index != -1)
+        {
+            cout << "iter_choice_column_index: " << iter_choice_column_index << endl;
+
+            // Find a zero in the column indexed that does not have a row with a choice.
+            // int choice_row_index = find_row_without_choice(choice_column_index)
+
+        }
+
 
 
         iter_line++;
@@ -390,6 +402,24 @@ bool CoverZeros::choice_in_all_marked_columns()
     }
 
     return choice_in_all_marked_columns;
+}
+
+
+int CoverZeros::find_row_without_choice(int choice_column_index)
+{
+    int row_without_choice_index = -1;
+    for(size_t i = 0; i < zero_locations.size(); ++i){ // 遍历每一行
+
+        // 判断在指定列是否存在0，并且这行里没有选择
+        if(zero_locations[i][choice_column_index] && std::none_of(choices[i].begin(), choices[i].end(), [](bool b){ return b; }))
+        {
+            row_without_choice_index = i;
+
+            break;
+        }
+    }
+
+    return row_without_choice_index;
 }
 
 

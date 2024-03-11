@@ -55,6 +55,8 @@ public:
 
     bool choice_in_all_marked_columns();
 
+    int find_row_without_choice(int choice_column_index);
+
     int find_marked_column_without_choice();
 
     // debug func
