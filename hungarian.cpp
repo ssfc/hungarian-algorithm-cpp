@@ -393,6 +393,29 @@ bool CoverZeros::choice_in_all_marked_columns()
 }
 
 
+int CoverZeros::find_marked_column_without_choice()
+{
+    int marked_column_without_choice_index = -1;
+    for (auto column_index: marked_columns)
+    {
+        if (std::all_of(choices.begin(), choices.end(),
+                        [column_index](const std::vector<bool>& row){ return !row[column_index]; }))
+        {
+            marked_column_without_choice_index = column_index;
+
+            break;
+        }
+    }
+
+    if(marked_column_without_choice_index == -1)
+    {
+        throw std::runtime_error("Could not find a column without a choice. Failed to cover matrix zeros. Algorithm has failed.");
+    }
+
+    return marked_column_without_choice_index;
+}
+
+
 void CoverZeros::print_int_vector(const std::vector<int>& input_vector)
 {
     for(auto element : input_vector)

@@ -55,6 +55,8 @@ public:
 
     bool choice_in_all_marked_columns();
 
+    int find_marked_column_without_choice();
+
     // debug func
     bool is_double_equal(double x, double y, double epsilon = 1e-9)
     {
