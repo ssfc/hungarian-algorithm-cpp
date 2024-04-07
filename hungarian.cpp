@@ -135,6 +135,21 @@ void Hungarian::hungarian_solve()
         total_covered = covered_rows.size() + covered_columns.size();
         cout << "total covered: " << total_covered << endl;
 
+        if(total_covered < square_matrix_size)
+        {
+            adjust_matrix_by_min_uncovered_num(transformed_matrix, covered_rows, covered_columns);
+        }
+
+        cout << "transformed_matrix: " << endl;
+        for(int i=0;i<transformed_matrix.size();i++)
+        {
+            for(int j=0;j<transformed_matrix[i].size();j++)
+            {
+                cout << transformed_matrix[i][j] << " ";
+            }
+            cout << endl;
+        }
+
         iter_step3++;
     }
 
@@ -160,7 +175,7 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
         }
     }
 
-    // cout << "min_uncovered_num: " << min_uncovered_num << endl;
+    cout << "min_uncovered_num: " << min_uncovered_num << endl;
 
     // Subtract min_uncovered_num from every uncovered element
     for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
