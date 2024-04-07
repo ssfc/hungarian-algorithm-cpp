@@ -19,8 +19,18 @@ iter_choice_column_index: 0
 choice_row_index: 0
 choice_column_index: None
 iter_choice_column_index stop at: 1
-iter_line stop at: 2 
 
-covered rows [5]
-covered columns [3, 4, 5]
+iter_line: 2
+marked_rows: [1, 2, 3, 4]
+num_marked_columns: 2
+marked_coumns: [4, 5]
+iter_choice stop at: 0
+iter_choice_column_index: 0
+choice_row_index: 2
+choice_column_index: None
+iter_choice_column_index stop at: 1
+iter_line stop at: 3 
+
+covered rows [0, 5]
+covered columns [4, 5]
 total covered 4

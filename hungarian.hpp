@@ -44,6 +44,7 @@ private:
 
     std::vector<std::vector<bool>> choices;
     std::vector<int> covered_rows;
+    std::vector<int> covered_columns;
 
 public:
     explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
@@ -61,6 +62,8 @@ public:
     std::pair<int, int> find_best_choice_row_and_new_column(int choice_column_index);
 
     int find_marked_column_without_choice();
+
+    std::vector<int> get_covered_rows();
 
     // debug func
     static bool is_double_equal(double x, double y, double epsilon = 1e-9)

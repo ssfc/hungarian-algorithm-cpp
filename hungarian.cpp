@@ -127,8 +127,8 @@ void Hungarian::hungarian_solve()
         cout << "iter_step3: " << iter_step3 << endl;
 
         CoverZeros cover_zeros(transformed_matrix);
-        // auto covered_rows = cover_zeros.get_covered_rows();  // 这是一个list
-
+        auto covered_rows = cover_zeros.get_covered_rows();  // 这是一个list
+        CoverZeros::print_int_vector("covered_rows", covered_rows);
 
         iter_step3++;
     }
@@ -216,7 +216,6 @@ CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
     }
 
     compute_min_lines_to_cover_zeros();
-    cout << "hhhhhh" << endl;
 
     // Draw lines through all unmarked rows and all marked columns.
     // 创建一个包含所有行索引的向量
@@ -238,7 +237,9 @@ CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
 
     // 移动到成员变量
     covered_rows = std::move(covered_rows_temp);
-    print_int_vector("covered_rows", covered_rows);
+    // print_int_vector("covered_rows", covered_rows);
+
+    covered_columns = marked_columns;
 }
 
 
@@ -246,7 +247,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 {
     int iter_line = 0;
     // cout << "compute_min_lines" << endl;
-    while(true && iter_line < 2)
+    while(true)
     {
         cout << endl << "iter_line: " << iter_line << endl;
 
@@ -359,6 +360,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
         iter_line++;
     }
+
     cout << "iter_line stop at: " << iter_line << endl;
 }
 
@@ -525,6 +527,12 @@ int CoverZeros::find_marked_column_without_choice()
     }
 
     return marked_column_without_choice_index;
+}
+
+
+std::vector<int> CoverZeros::get_covered_rows()
+{
+    return covered_rows;
 }
 
 
