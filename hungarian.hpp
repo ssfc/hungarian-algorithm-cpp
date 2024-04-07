@@ -57,6 +57,8 @@ public:
 
     int find_row_without_choice(int choice_column_index);
 
+    std::pair<int, int> find_best_choice_row_and_new_column(int choice_column_index);
+
     int find_marked_column_without_choice();
 
     // debug func
