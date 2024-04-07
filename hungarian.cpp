@@ -459,7 +459,7 @@ std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_c
     for (size_t column_index = 0; column_index < square_matrix_size; column_index++)
     {
         if (choices[row][column_index])
-            column_indices.push_back(static_cast<int>(column_index));
+            column_indices.push_back(column_index);
     }
 
     return {row, column_indices[0]};
