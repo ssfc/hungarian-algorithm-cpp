@@ -453,7 +453,7 @@ std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_c
     }
 
     // Cannot find optimal row and column. Return a random row and column.
-    int row = row_indices[0];
+    size_t row = row_indices[0];
 
     std::vector<size_t> column_indices;
     for (size_t column_index = 0; column_index < square_matrix_size; column_index++)
