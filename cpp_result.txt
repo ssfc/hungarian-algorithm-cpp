@@ -1,0 +1,22 @@
+iter_step3: 0
+
+iter_line: 0
+marked_rows: 0 1 2 3 4 5
+num_marked_columns:6
+marked_columns: 0 1 2 3 4 5
+iter_choice stop at: 0
+iter_choice_column_index: 0
+choice_row_index: 5
+choice_column_index: -1
+iter_choice_column_index stop at:1
+
+iter_line: 1
+marked_rows: 0 1 2 3 4
+num_marked_columns:3
+marked_columns: 3 4 5
+iter_choice stop at: 0
+iter_choice_column_index: 0
+choice_row_index: 0
+choice_column_index: -1
+iter_choice_column_index stop at:1
+iter_line stop at: 2

@@ -43,6 +43,7 @@ private:
     std::vector<int> marked_columns;
 
     std::vector<std::vector<bool>> choices;
+    std::vector<int> covered_rows;
 
 public:
     explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
