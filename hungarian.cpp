@@ -147,6 +147,10 @@ void Hungarian::hungarian_solve()
         iter_step3++;
     }
 
+    // Step 4: Starting with the top row, work your way downwards as you make assignments.
+    // Find single zeros in rows or columns.
+    // Add them to final result and remove them and their associated row/column from the matrix.
+
 }
 
 
