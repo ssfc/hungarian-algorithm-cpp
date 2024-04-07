@@ -42,7 +42,7 @@ public:
             int column_index
     );
 
-    void select_arbitrary_match(const std::vector<std::vector<int>>& zero_locations);
+    std::pair<int, int> select_arbitrary_match(const std::vector<std::vector<bool>>& zero_locations);
 
     std::vector<int>  get_work_assignment(); // Get results after calculation.
 

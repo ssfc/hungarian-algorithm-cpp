@@ -201,7 +201,9 @@ void Hungarian::hungarian_solve()
         auto total_matched = matched_rows.size() + matched_columns.size();
         if(total_matched == 0)
         {
-            matched_rows, matched_columns = select_arbitrary_match(zero_locations);
+            auto temp = select_arbitrary_match(zero_locations);
+            matched_rows = vector<int>{temp.first};
+            matched_columns = vector<int>{temp.second};
         }
 
         iter_step4++;
@@ -348,9 +350,58 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::mark_rows_and_columns(
 }
 
 
-void Hungarian::select_arbitrary_match(const std::vector<std::vector<int>>& zero_locations)
+std::pair<int, int> Hungarian::select_arbitrary_match(
+        const std::vector<std::vector<bool>>& zero_locations)
 {
+    // Set up a vector to keep track of the counts
+    std::vector<int> zero_count;
+    std::vector<std::pair<int, int>> coordinates;
 
+    // Iterate over every element and count zeros in the corresponding rows and columns
+    for (size_t i = 0; i < zero_locations.size(); ++i)
+    {
+        for (size_t j = 0; j < zero_locations[i].size(); ++j)
+        {
+            if (zero_locations[i][j])
+            {
+                int row_count = 0;
+                int column_count = 0;
+
+                // Count zeros in the row
+                for (size_t k = 0; k < zero_locations[i].size(); ++k)
+                {
+                    if (zero_locations[i][k]) row_count++;
+                }
+
+                // Count zeros in the column
+                for (size_t k = 0; k < zero_locations.size(); ++k)
+                {
+                    if (zero_locations[k][j]) column_count++;
+                }
+
+                // Add the sum of row and column zeros to the counts
+                zero_count.push_back(row_count + column_count);
+                coordinates.push_back({i, j}); // Store the coordinates as well
+            }
+        }
+    }
+
+    // Find the row-column combination with the fewest zeros
+    auto it = std::min_element(zero_count.begin(), zero_count.end());
+
+    // If there are no zeros, return an error state or handle appropriately
+    if (it == zero_count.end())
+    {
+        // Throw an error or handle the situation where no matching zero is found
+        throw std::runtime_error("No zero found to select.");
+    }
+
+    // The coordinates corresponding to the smallest count
+    size_t index = std::distance(zero_count.begin(), it);
+    int row = coordinates[index].first;
+    int column = coordinates[index].second;
+
+    return {row, column};
 }
 
 
