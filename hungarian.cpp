@@ -129,22 +129,22 @@ double Hungarian::hungarian_solve()
     while(total_covered < square_matrix_size)
     // while(total_covered < square_matrix_size && iter_step3 < 3)
     {
-        cout << "iter_step3: " << iter_step3 << endl;
+        // cout << "iter_step3: " << iter_step3 << endl;
 
         CoverZeros cover_zeros(transformed_matrix);
         auto covered_rows = cover_zeros.get_covered_rows();  // 这是一个list
-        CoverZeros::print_int_vector("covered_rows", covered_rows);
+        // CoverZeros::print_int_vector("covered_rows", covered_rows);
         auto covered_columns = cover_zeros.get_covered_columns();  // 这也是一个list
-        CoverZeros::print_int_vector("covered columns", covered_columns);
+        // CoverZeros::print_int_vector("covered columns", covered_columns);
         total_covered = covered_rows.size() + covered_columns.size();
-        cout << "total covered: " << total_covered << endl;
+        // cout << "total covered: " << total_covered << endl;
 
         if(total_covered < square_matrix_size)
         {
             adjust_matrix_by_min_uncovered_num(transformed_matrix, covered_rows, covered_columns);
         }
 
-        print_double_matrix("transformed_matrix", transformed_matrix);
+        // print_double_matrix("transformed_matrix", transformed_matrix);
 
         iter_step3++;
     }
@@ -166,13 +166,13 @@ double Hungarian::hungarian_solve()
             zero_locations[i][j] = std::fabs(transformed_matrix[i][j]) < epsilon;
         }
     }
-    print_bool_matrix("zero_locations", zero_locations);
+    // print_bool_matrix("zero_locations", zero_locations);
 
     int iter_step4 = 0;
     while(work_assignment.size() != expected_results)
     // while(work_assignment.size() != expected_results && iter_step4 < 2)
     {
-        cout << "iter_step4: " << iter_step4 << endl;
+        // cout << "iter_step4: " << iter_step4 << endl;
         bool exist_zero = false;
         for (const auto& row : zero_locations)
         {
@@ -195,8 +195,8 @@ double Hungarian::hungarian_solve()
         auto matched_rows = temp.first;
         auto matched_columns = temp.second;
 
-        CoverZeros::print_int_vector("matched_rows", matched_rows);
-        CoverZeros::print_int_vector("matched_columns", matched_columns);
+        // CoverZeros::print_int_vector("matched_rows", matched_rows);
+        // CoverZeros::print_int_vector("matched_columns", matched_columns);
 
         // Make arbitrary selection
         auto total_matched = matched_rows.size() + matched_columns.size();
@@ -279,7 +279,7 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
         }
     }
 
-    cout << "min_uncovered_num: " << min_uncovered_num << endl;
+    // cout << "min_uncovered_num: " << min_uncovered_num << endl;
 
     // Add min_uncovered_num to every element in covered rows
     for (int row : covered_rows)
@@ -619,7 +619,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
     // cout << "compute_min_lines" << endl;
     while(true)
     {
-        cout << endl << "iter_line: " << iter_line << endl;
+        // cout << endl << "iter_line: " << iter_line << endl;
 
         // Erase all marks.
         marked_rows.clear();
@@ -635,7 +635,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
             }
         }
 
-        print_int_vector("marked_rows", marked_rows);
+        // print_int_vector("marked_rows", marked_rows);
 
         // If no marked rows then finish.
         if (marked_rows.empty())
@@ -645,13 +645,13 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
         // Mark all columns not already marked which have zeros in marked rows.
         int num_marked_columns = mark_new_columns_with_zeros_in_marked_rows();
-        cout << "num_marked_columns:" << num_marked_columns << endl;
-        print_int_vector("marked_columns", marked_columns);
+        // cout << "num_marked_columns:" << num_marked_columns << endl;
+        // print_int_vector("marked_columns", marked_columns);
 
         // If no new marked columns then finish.
         if(num_marked_columns == 0)
         {
-            cout << "no new marked columns" << endl;
+            // cout << "no new marked columns" << endl;
 
             return true;
         }
@@ -661,7 +661,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         while(choice_in_all_marked_columns())
         // while(choice_in_all_marked_columns() && iter_choice < 1)
         {
-            cout << "iter_choice: " << iter_choice << endl;
+            // cout << "iter_choice: " << iter_choice << endl;
 
             // Some Choice in every marked column.
             // Mark all rows not already marked which have choices in marked columns.
@@ -670,7 +670,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
             // If no new marks then Finish.
             if(num_marked_rows == 0)
             {
-                cout << "no new marked rows" << endl;
+                // cout << "no new marked rows" << endl;
 
                 return true;
             }
@@ -681,14 +681,14 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
             // If no new marked columns then finish.
             if(num_marked_columns == 0)
             {
-                cout << "no new marked columns" << endl;
+                // cout << "no new marked columns" << endl;
 
                 return true;
             }
 
             iter_choice++;
         }
-        cout << "iter_choice stop at: " << iter_choice << endl;
+        // cout << "iter_choice stop at: " << iter_choice << endl;
 
         // No choice in one or more marked columns.
         // Find a marked column that does not have a choice.
@@ -698,17 +698,17 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         while(choice_column_index != -1)
         // while(choice_column_index != -1 && iter_choice_column_index < 2)
         {
-            cout << "iter_choice_column_index: " << iter_choice_column_index << endl;
+            // cout << "iter_choice_column_index: " << iter_choice_column_index << endl;
 
             // Find a zero in the column indexed that does not have a row with a choice.
             int choice_row_index = find_row_without_choice(choice_column_index);
-            cout << "choice_row_index: " << choice_row_index << endl;
+            // cout << "choice_row_index: " << choice_row_index << endl;
 
             // Check if an available row was found.
             int new_choice_column_index = -1;
             if(choice_row_index == -1)
             {
-                cout << "choice_row_index is None" << endl;
+                // cout << "choice_row_index is None" << endl;
                 // Find a good row to accommodate swap. Find its column pair.
                 auto temp = find_best_choice_row_and_new_column(choice_column_index);
                 choice_row_index = temp.first;
@@ -723,15 +723,15 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
             // # Loop again if choice is added to a row with a choice already in it.
             choice_column_index = new_choice_column_index;
-            cout << "choice_column_index: " << choice_column_index << endl;
+            // cout << "choice_column_index: " << choice_column_index << endl;
             iter_choice_column_index += 1;
         }
-        cout << "iter_choice_column_index stop at:" << iter_choice_column_index << endl;
+        // cout << "iter_choice_column_index stop at:" << iter_choice_column_index << endl;
 
         iter_line++;
     }
 
-    cout << "iter_line stop at: " << iter_line << endl;
+    // cout << "iter_line stop at: " << iter_line << endl;
 }
 
 
