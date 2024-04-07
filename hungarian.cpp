@@ -206,6 +206,24 @@ void Hungarian::hungarian_solve()
             matched_columns = vector<int>{temp.second};
         }
 
+        // Delete rows
+        for (int row : matched_rows)
+        {
+            // Assuming all rows have the same size, which should be the case in any proper matrix
+            std::fill(zero_locations[row].begin(), zero_locations[row].end(), false);
+        }
+
+        // Delete columns
+        for (int column : matched_columns)
+        {
+            for (std::vector<bool>& row : zero_locations)
+            {
+                row[column] = false;
+            }
+        }
+
+        // print_bool_matrix("zero_locations after delete matched:\n", zero_locations);
+
         iter_step4++;
     }
 }
