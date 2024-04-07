@@ -17,6 +17,8 @@
 class Hungarian
 {
 private:
+    int num_rows;
+    int num_columns;
     int square_matrix_size;
     std::vector<std::vector<double>> cost_matrix;
 

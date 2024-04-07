@@ -9,13 +9,13 @@ using namespace std;
 
 
 Hungarian::Hungarian(const std::string &input_filename):
+    num_rows(0),
+    num_columns(0),
     square_matrix_size(0)
 {
     std::ifstream map_file(input_filename);
     if (map_file.is_open())
     {
-        int num_rows;
-        int num_columns;
         map_file >> num_rows >> num_columns;
 
         cost_matrix.resize(num_rows);
