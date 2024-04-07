@@ -142,8 +142,7 @@ void Hungarian::hungarian_solve()
             adjust_matrix_by_min_uncovered_num(transformed_matrix, covered_rows, covered_columns);
         }
 
-        cout << "transformed_matrix: " << endl;
-        print_double_matrix(transformed_matrix);
+        print_double_matrix("transformed_matrix", transformed_matrix);
 
         iter_step3++;
     }
@@ -257,8 +256,9 @@ void Hungarian::brute_force()
 }
 
 
-void Hungarian::print_double_matrix(const std::vector<std::vector<double>>& input_matrix)
+void Hungarian::print_double_matrix(const std::string& matrix_name, const std::vector<std::vector<double>>& input_matrix)
 {
+    cout << matrix_name << ":\n";
     for (auto & each_row : input_matrix)
     {
         for (double each_element : each_row)
