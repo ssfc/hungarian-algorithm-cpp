@@ -4,6 +4,7 @@
 
 #include <cfloat>
 #include <cmath>
+#include <tuple>
 #include "hungarian.hpp"
 
 using namespace std;
@@ -256,8 +257,58 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std:
     vector<int> marked_rows;
     vector<int> marked_columns;
 
+    // Mark rows and columns with matches
+    // Iterate over rows
+    // We'll iterate over the rows of zero_locations
+    for (size_t index = 0; index < zero_locations.size(); ++index)
+    {
+        const auto& row = zero_locations[index];
+
+        // Count the number of `true` values in the current row which represent zeros in original context
+        int sum_of_row = std::count(row.begin(), row.end(), true);
+
+        if (sum_of_row == 1)
+        {
+            // Find the index of the only `true` value in the row which stands for the column index
+            auto it = std::find(row.begin(), row.end(), true);
+            if (it != row.end())
+            {
+                int column_index = std::distance(row.begin(), it);
+
+                // mark_rows_and_columns may look a bit different in C++ compared to Python since we would
+                // modify vectors by reference and not return new ones most likely, so let's use that approach here.
+                std::tie(marked_rows, marked_columns) = mark_rows_and_columns(
+                        marked_rows,
+                        marked_columns,
+                        static_cast<int>(index), // row_index
+                        column_index);
+            }
+        }
+    }
 
     return std::make_pair(marked_rows, marked_columns);
+}
+
+
+std::pair<std::vector<int>, std::vector<int>> Hungarian::mark_rows_and_columns(
+        const std::vector<int>& marked_rows,
+        const std::vector<int>& marked_columns,
+        int row_index,
+        int column_index)
+{
+    // Create new vectors from the existing ones
+    std::vector<int> new_marked_rows = marked_rows;
+    std::vector<int> new_marked_columns = marked_columns;
+
+    // If row_index is not in marked_rows and column_index is not in marked_columns, mark them
+    if (std::find(marked_rows.begin(), marked_rows.end(), row_index) == marked_rows.end() &&
+        std::find(marked_columns.begin(), marked_columns.end(), column_index) == marked_columns.end()) {
+        new_marked_rows.push_back(row_index);
+        new_marked_columns.push_back(column_index);
+    }
+
+    // Return the updated lists of marked rows and columns as a pair
+    return std::make_pair(new_marked_rows, new_marked_columns);
 }
 
 
