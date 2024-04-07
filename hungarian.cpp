@@ -3,6 +3,7 @@
 //
 
 #include <cfloat>
+#include <cmath>
 #include "hungarian.hpp"
 
 using namespace std;
@@ -150,7 +151,22 @@ void Hungarian::hungarian_solve()
     // Step 4: Starting with the top row, work your way downwards as you make assignments.
     // Find single zeros in rows or columns.
     // Add them to final result and remove them and their associated row/column from the matrix.
+    auto expected_results = std::min(num_columns, num_rows);
+    std::vector<std::vector<bool>> zero_locations;
+    zero_locations.resize(transformed_matrix.size());
+    for (size_t i = 0; i < transformed_matrix.size(); ++i)
+    {
+        // Resize the inner vector to match size of the inner transformed_matrix vector
+        zero_locations[i].resize(transformed_matrix[i].size());
 
+        for (size_t j = 0; j < transformed_matrix[i].size(); ++j)
+        {
+            // Check if the value is close enough to zero to be considered zero
+            zero_locations[i][j] = std::fabs(transformed_matrix[i][j]) < 1e-9;
+        }
+    }
+    cout << "zero_locations:" << endl;
+    print_bool_matrix(zero_locations);
 }
 
 
@@ -243,6 +259,20 @@ void Hungarian::brute_force()
 
 
 void Hungarian::print_double_matrix(const std::vector<std::vector<double>>& input_matrix)
+{
+    for (auto & each_row : input_matrix)
+    {
+        for (double each_element : each_row)
+        {
+            std::cout << each_element << " ";
+        }
+
+        std::cout << std::endl;
+    }
+}
+
+
+void Hungarian::print_bool_matrix(const std::vector<std::vector<bool>>& input_matrix)
 {
     for (auto & each_row : input_matrix)
     {

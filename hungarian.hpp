@@ -33,7 +33,7 @@ public:
     // debug func
     void brute_force();
     static void print_double_matrix(const std::vector<std::vector<double>>& input_matrix);
-
+    static void print_bool_matrix(const std::vector<std::vector<bool>>& input_matrix);
 };
 
 
