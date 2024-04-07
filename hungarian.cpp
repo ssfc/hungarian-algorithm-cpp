@@ -543,6 +543,18 @@ void Hungarian::print_bool_matrix(const string& matrix_name, const std::vector<s
 }
 
 
+void Hungarian::print_pair_vector(const string& vector_name, const std::vector<std::pair<int, int>>& input_vector)
+{
+    cout << vector_name <<": [";
+    for (auto & each_element : input_vector)
+    {
+        cout <<"(" << each_element.first << "," << each_element.second << ")";
+
+    }
+    std::cout << "]" << std::endl;
+}
+
+
 CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix):
 epsilon(1e-9)
 {

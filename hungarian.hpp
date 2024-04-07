@@ -52,6 +52,7 @@ public:
     void brute_force();
     static void print_double_matrix(const std::string& matrix_name, const std::vector<std::vector<double>>& input_matrix);
     static void print_bool_matrix(const std::string& matrix_name, const std::vector<std::vector<bool>>& input_matrix);
+    static void print_pair_vector(const std::string& vector_name, const std::vector<std::pair<int, int>>& input_vector);
 };
 
 

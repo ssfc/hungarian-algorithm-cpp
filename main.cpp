@@ -12,6 +12,7 @@ int main()
     // std::cout << "hello" << std::endl;
 
     test.hungarian_solve();
+    Hungarian::print_pair_vector("work assignment", test.get_work_assignment());
     // test.brute_force();
 
     return 0;
