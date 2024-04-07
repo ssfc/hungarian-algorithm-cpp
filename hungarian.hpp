@@ -23,7 +23,7 @@ private:
     std::vector<std::vector<double>> cost_matrix;
 
     std::vector<int> work_assignment;
-    
+
     double epsilon;
 
 public:
@@ -33,6 +33,8 @@ public:
 
     void adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
             std::vector<int> covered_rows, std::vector<int> covered_columns);
+
+    std::vector<int>  get_work_assignment(); // Get results after calculation.
 
     // debug func
     void brute_force();

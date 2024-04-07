@@ -221,6 +221,12 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
 }
 
 
+std::vector<int> Hungarian::get_work_assignment()
+{
+    return work_assignment;
+}
+
+
 void Hungarian::brute_force()
 {
     std::vector<int> work_assignment(square_matrix_size);
