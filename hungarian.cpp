@@ -229,7 +229,7 @@ void Hungarian::hungarian_solve()
 
         // print_bool_matrix("zero_locations after delete matched:\n", zero_locations);
 
-        std::vector<std::pair<int, int>> zipped;
+        std::vector<std::pair<int, int>> zipped_matched;
         // Ensure that both vectors have the same size
         if(matched_rows.size() != matched_columns.size())
         {
@@ -239,10 +239,10 @@ void Hungarian::hungarian_solve()
 
         for (size_t i = 0; i < matched_rows.size(); ++i)
         {
-            zipped.emplace_back(matched_rows[i], matched_columns[i]);
+            zipped_matched.emplace_back(matched_rows[i], matched_columns[i]);
         }
 
-        set_results(zipped);
+        set_results(zipped_matched);
 
         iter_step4++;
     }
