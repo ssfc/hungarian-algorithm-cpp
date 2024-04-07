@@ -309,15 +309,24 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
             // Check if an available row was found.
             int new_choice_column_index = -1;
-            if(choice_row_index != -1)
+            if(choice_row_index == -1)
             {
                 // Find a good row to accommodate swap. Find its column pair.
+                auto temp = find_best_choice_row_and_new_column(choice_column_index);
+                choice_row_index = temp.first;
+                new_choice_column_index = temp.second;
 
+                // Delete old choice.
+                choices[choice_row_index][new_choice_column_index] = false;
             }
 
+            // Set zero to choice.
+            choices[choice_row_index][choice_column_index] = true;
+
+            // # Loop again if choice is added to a row with a choice already in it.
+            choice_column_index = new_choice_column_index;
+            iter_choice_column_index += 1;
         }
-
-
 
         iter_line++;
     }
