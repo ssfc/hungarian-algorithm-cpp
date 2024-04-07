@@ -21,6 +21,9 @@ private:
     int num_columns;
     int square_matrix_size;
     std::vector<std::vector<double>> cost_matrix;
+
+    std::vector<int> work_assignment;
+    
     double epsilon;
 
 public:
