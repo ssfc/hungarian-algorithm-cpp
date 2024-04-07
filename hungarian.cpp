@@ -265,7 +265,7 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std:
         const auto& row = zero_locations[index];
 
         // Count the number of `true` values in the current row which represent zeros in original context
-        int sum_of_row = std::count(row.begin(), row.end(), true);
+        auto sum_of_row = std::count(row.begin(), row.end(), true);
 
         if (sum_of_row == 1)
         {
