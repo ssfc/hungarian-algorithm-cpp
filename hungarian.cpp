@@ -166,6 +166,29 @@ void Hungarian::hungarian_solve()
         }
     }
     print_bool_matrix("zero_locations", zero_locations);
+
+    while(work_assignment.size() != expected_results)
+    {
+        bool exist_zero = false;
+        for (const auto& row : zero_locations)
+        {
+            for (bool zero : row)
+            {
+                if (zero)
+                {
+                    exist_zero = true; // Found a zero, no need to check further.
+                    break;
+                }
+            }
+        }
+
+        if(!exist_zero)
+        {
+            throw std::runtime_error("Unable to find results. Algorithm has failed.");
+        }
+
+
+    }
 }
 
 
