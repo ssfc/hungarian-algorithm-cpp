@@ -167,8 +167,10 @@ void Hungarian::hungarian_solve()
     }
     print_bool_matrix("zero_locations", zero_locations);
 
-    while(work_assignment.size() != expected_results)
+    int iter_step4 = 0;
+    while(work_assignment.size() != expected_results && iter_step4 < 1)
     {
+        cout << "iter_step4: " << iter_step4 << endl;
         bool exist_zero = false;
         for (const auto& row : zero_locations)
         {
@@ -188,6 +190,7 @@ void Hungarian::hungarian_solve()
         }
 
 
+        iter_step4++;
     }
 }
 
