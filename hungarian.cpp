@@ -241,8 +241,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
             }
         }
 
-        cout << "marked_rows: ";
-        print_int_vector(marked_rows);
+        print_int_vector("marked_rows", marked_rows);
 
         // If no marked rows then finish.
         if (marked_rows.empty())
@@ -253,7 +252,7 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
         // Mark all columns not already marked which have zeros in marked rows.
         int num_marked_columns = mark_new_columns_with_zeros_in_marked_rows();
         cout << "num_marked_columns:" << num_marked_columns << endl;
-        print_int_vector(marked_columns);
+        print_int_vector("marked_columns", marked_columns);
 
         // If no new marked columns then finish.
         if(num_marked_columns == 0)
@@ -265,7 +264,8 @@ bool CoverZeros::compute_min_lines_to_cover_zeros()
 
         // While there is some choice in every marked column.
         int iter_choice = 0;
-        while(choice_in_all_marked_columns() && iter_choice < 1)
+        while(choice_in_all_marked_columns())
+        // while(choice_in_all_marked_columns() && iter_choice < 1)
         {
             cout << "iter_choice: " << iter_choice << endl;
 
@@ -498,8 +498,9 @@ int CoverZeros::find_marked_column_without_choice()
 }
 
 
-void CoverZeros::print_int_vector(const std::vector<int>& input_vector)
+void CoverZeros::print_int_vector(const std::string& vector_name, const std::vector<int>& input_vector)
 {
+    cout << vector_name << ": ";
     for(auto element : input_vector)
     {
         cout << element << " ";

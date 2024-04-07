@@ -67,7 +67,7 @@ public:
         return std::abs(x - y) < epsilon;
     }
 
-    static void print_int_vector(const std::vector<int>& input_vector);
+    static void print_int_vector(const std::string& vector_name, const std::vector<int>& input_vector);
 };
 
 #endif // HUNGARIAN_HPP
