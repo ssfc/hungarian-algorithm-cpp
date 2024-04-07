@@ -206,6 +206,7 @@ void Hungarian::hungarian_solve()
             matched_columns = vector<int>{temp.second};
         }
 
+        // 测试select_arbitrary_match的正确性
         // auto result = select_arbitrary_match(zero_locations);
         // cout << "result:" << result.first << " " << result.second << endl;
 
