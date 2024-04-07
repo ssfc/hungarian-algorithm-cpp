@@ -22,7 +22,7 @@ private:
     int square_matrix_size;
     std::vector<std::vector<double>> cost_matrix;
 
-    std::vector<int> work_assignment;
+    std::vector<std::pair<int, int>> work_assignment;
 
     double epsilon;
 
@@ -44,7 +44,9 @@ public:
 
     std::pair<int, int> select_arbitrary_match(const std::vector<std::vector<bool>>& zero_locations);
 
-    std::vector<int>  get_work_assignment(); // Get results after calculation.
+    void set_results(const std::vector<std::pair<int, int>>& result_pairs);
+
+    std::vector<std::pair<int, int>>  get_work_assignment(); // Get results after calculation.
 
     // debug func
     void brute_force();

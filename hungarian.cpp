@@ -169,7 +169,8 @@ void Hungarian::hungarian_solve()
     print_bool_matrix("zero_locations", zero_locations);
 
     int iter_step4 = 0;
-    while(work_assignment.size() != expected_results && iter_step4 < 1)
+    while(work_assignment.size() != expected_results)
+    // while(work_assignment.size() != expected_results && iter_step4 < 2)
     {
         cout << "iter_step4: " << iter_step4 << endl;
         bool exist_zero = false;
@@ -227,6 +228,21 @@ void Hungarian::hungarian_solve()
         }
 
         // print_bool_matrix("zero_locations after delete matched:\n", zero_locations);
+
+        std::vector<std::pair<int, int>> zipped;
+        // Ensure that both vectors have the same size
+        if(matched_rows.size() != matched_columns.size())
+        {
+            // Handle the error, perhaps throw an exception
+            throw std::invalid_argument("matched_rows and matched_columns must be the same size");
+        }
+
+        for (size_t i = 0; i < matched_rows.size(); ++i)
+        {
+            zipped.emplace_back(matched_rows[i], matched_columns[i]);
+        }
+
+        set_results(zipped);
 
         iter_step4++;
     }
@@ -427,7 +443,24 @@ std::pair<int, int> Hungarian::select_arbitrary_match(
 }
 
 
-std::vector<int> Hungarian::get_work_assignment()
+void Hungarian::set_results(const std::vector<std::pair<int, int>>& result_pairs)
+{
+    // Iterate through result pairs and add them to the assignment list
+    for (const auto& result : result_pairs)
+    {
+        int row = result.first;
+        int column = result.second;
+
+        // Check if the row and column indices are within the bounds of the original matrix
+        if (row < num_rows && column < num_columns)
+        {
+            work_assignment.push_back(std::make_pair(row, column));
+        }
+    }
+}
+
+
+std::vector<std::pair<int, int>> Hungarian::get_work_assignment()
 {
     return work_assignment;
 }
