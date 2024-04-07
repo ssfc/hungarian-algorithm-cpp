@@ -253,7 +253,11 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
 
 std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std::vector<std::vector<bool>>& zero_locations)
 {
+    vector<int> marked_rows;
+    vector<int> marked_columns;
 
+
+    return std::make_pair(marked_rows, marked_columns);
 }
 
 
