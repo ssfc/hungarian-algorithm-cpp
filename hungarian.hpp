@@ -60,7 +60,7 @@ public:
     int find_marked_column_without_choice();
 
     // debug func
-    bool is_double_equal(double x, double y, double epsilon = 1e-9)
+    static bool is_double_equal(double x, double y, double epsilon = 1e-9)
     {
         return std::abs(x - y) < epsilon;
     }
