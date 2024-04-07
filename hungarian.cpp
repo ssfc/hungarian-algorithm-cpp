@@ -194,6 +194,8 @@ void Hungarian::hungarian_solve()
         auto matched_rows = temp.first;
         auto matched_columns = temp.second;
 
+        CoverZeros::print_int_vector("matched_rows", matched_rows);
+        CoverZeros::print_int_vector("matched_columns", matched_columns);
 
         iter_step4++;
     }
