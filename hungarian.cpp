@@ -177,38 +177,13 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
 
     cout << "min_uncovered_num: " << min_uncovered_num << endl;
 
-    // Subtract min_uncovered_num from every uncovered element
-    for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
-    {
-        for (size_t column_index = 0; column_index < matrix[row_index].size(); ++column_index)
-        {
-            bool is_covered_row = std::find(covered_rows.begin(), covered_rows.end(), row_index) != covered_rows.end();
-            bool is_covered_column = std::find(covered_columns.begin(), covered_columns.end(), column_index) != covered_columns.end();
-
-            if (is_covered_row && is_covered_column)
-            {
-                // Element is covered twice
-                matrix[row_index][column_index] += min_uncovered_num * 2;
-            }
-            else if (!is_covered_row && !is_covered_column)
-            {
-                // Element is not covered
-                matrix[row_index][column_index] -= min_uncovered_num;
-            }
-            // If the element is covered exactly once, we do nothing
-        }
-    }
-
     // Add min_uncovered_num to every element in covered rows
     for (int row : covered_rows)
     {
         for (size_t column_index = 0; column_index < matrix[row].size(); ++column_index)
         {
-            if (std::find(covered_columns.begin(), covered_columns.end(), column_index) == covered_columns.end())
-            {
-                // Only add to elements not in covered columns
-                matrix[row][column_index] += min_uncovered_num;
-            }
+            // Only add to elements not in covered columns
+            matrix[row][column_index] += min_uncovered_num;
         }
     }
 
@@ -217,14 +192,19 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
     {
         for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
         {
-            if (std::find(covered_rows.begin(), covered_rows.end(), row_index) == covered_rows.end())
-            {
-                // Only add to elements not in covered rows
-                matrix[row_index][column] += min_uncovered_num;
-            }
+            // Only add to elements not in covered rows
+            matrix[row_index][column] += min_uncovered_num;
         }
     }
 
+    // Subtract min_uncovered_num from element
+    for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
+    {
+        for (size_t column_index = 0; column_index < matrix[row_index].size(); ++column_index)
+        {
+            matrix[row_index][column_index] -= min_uncovered_num;
+        }
+    }
 }
 
 
