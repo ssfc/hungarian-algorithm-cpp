@@ -2,6 +2,7 @@
 // Created by take_ on 2024/3/9.
 //
 
+#include <cfloat>
 #include "hungarian.hpp"
 
 using namespace std;
@@ -144,7 +145,7 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
                            std::vector<int> covered_rows, std::vector<int> covered_columns)
 {
     // Calculate minimum uncovered number (min_uncovered_num)
-    int min_uncovered_num = INT_MAX;
+    auto min_uncovered_num = DBL_MAX;
     for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
     {
         for (size_t column_index = 0; column_index < matrix[row_index].size(); ++column_index)
@@ -159,13 +160,15 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
         }
     }
 
+    // cout << "min_uncovered_num: " << min_uncovered_num << endl;
+
     // Subtract min_uncovered_num from every uncovered element
     for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
     {
         for (size_t column_index = 0; column_index < matrix[row_index].size(); ++column_index)
         {
-            bool is_covered_row = std::find(marked_rows.begin(), marked_rows.end(), row_index) != marked_rows.end();
-            bool is_covered_column = std::find(marked_columns.begin(), marked_columns.end(), column_index) != marked_columns.end();
+            bool is_covered_row = std::find(covered_rows.begin(), covered_rows.end(), row_index) != covered_rows.end();
+            bool is_covered_column = std::find(covered_columns.begin(), covered_columns.end(), column_index) != covered_columns.end();
 
             if (is_covered_row && is_covered_column)
             {
@@ -182,11 +185,11 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
     }
 
     // Add min_uncovered_num to every element in covered rows
-    for (int row : marked_rows)
+    for (int row : covered_rows)
     {
         for (size_t column_index = 0; column_index < matrix[row].size(); ++column_index)
         {
-            if (std::find(marked_columns.begin(), marked_columns.end(), column_index) == marked_columns.end())
+            if (std::find(covered_columns.begin(), covered_columns.end(), column_index) == covered_columns.end())
             {
                 // Only add to elements not in covered columns
                 matrix[row][column_index] += min_uncovered_num;
@@ -195,17 +198,18 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
     }
 
     // Add min_uncovered_num to every element in covered columns
-    for (int column : marked_columns)
+    for (int column : covered_columns)
     {
         for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
         {
-            if (std::find(marked_rows.begin(), marked_rows.end(), row_index) == marked_rows.end())
+            if (std::find(covered_rows.begin(), covered_rows.end(), row_index) == covered_rows.end())
             {
                 // Only add to elements not in covered rows
                 matrix[row_index][column] += min_uncovered_num;
             }
         }
     }
+
 }
 
 
