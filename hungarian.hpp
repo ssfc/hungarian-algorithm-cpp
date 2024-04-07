@@ -34,7 +34,7 @@ public:
     void adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
             std::vector<int> covered_rows, std::vector<int> covered_columns);
 
-    void find_matches(const std::vector<std::vector<bool>>& zero_locations);
+    std::pair<std::vector<int>, std::vector<int>> find_matches(const std::vector<std::vector<bool>>& zero_locations);
 
     std::vector<int>  get_work_assignment(); // Get results after calculation.
 

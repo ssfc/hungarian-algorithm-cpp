@@ -189,6 +189,10 @@ void Hungarian::hungarian_solve()
             throw std::runtime_error("Unable to find results. Algorithm has failed.");
         }
 
+        auto temp = find_matches(zero_locations);
+        auto matched_rows = temp.first;
+        auto matched_columns = temp.second;
+
 
         iter_step4++;
     }
@@ -247,7 +251,7 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
 }
 
 
-void Hungarian::find_matches(const std::vector<std::vector<bool>>& zero_locations)
+std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std::vector<std::vector<bool>>& zero_locations)
 {
 
 }
