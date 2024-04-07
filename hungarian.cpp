@@ -165,8 +165,7 @@ void Hungarian::hungarian_solve()
             zero_locations[i][j] = std::fabs(transformed_matrix[i][j]) < 1e-9;
         }
     }
-    cout << "zero_locations:" << endl;
-    print_bool_matrix(zero_locations);
+    print_bool_matrix("zero_locations", zero_locations);
 }
 
 
@@ -272,8 +271,9 @@ void Hungarian::print_double_matrix(const std::vector<std::vector<double>>& inpu
 }
 
 
-void Hungarian::print_bool_matrix(const std::vector<std::vector<bool>>& input_matrix)
+void Hungarian::print_bool_matrix(const string& matrix_name, const std::vector<std::vector<bool>>& input_matrix)
 {
+    cout << matrix_name <<":\n";
     for (auto & each_row : input_matrix)
     {
         for (double each_element : each_row)
