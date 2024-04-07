@@ -247,9 +247,9 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
 }
 
 
-void Hungarian::find_matches()
+void Hungarian::find_matches(const std::vector<std::vector<bool>>& zero_locations)
 {
-    
+
 }
 
 
