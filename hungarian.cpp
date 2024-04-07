@@ -123,7 +123,8 @@ void Hungarian::hungarian_solve()
     int iter_step3 = 0;
     size_t total_covered = 0;
 
-    while(total_covered < square_matrix_size && iter_step3 < 1)
+    while(total_covered < square_matrix_size)
+    // while(total_covered < square_matrix_size && iter_step3 < 3)
     {
         cout << "iter_step3: " << iter_step3 << endl;
 
