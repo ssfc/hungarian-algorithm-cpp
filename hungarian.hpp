@@ -25,9 +25,11 @@ public:
 
     void hungarian_solve();
 
-    void brute_force();
+    void adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
+            std::vector<int> covered_rows, std::vector<int> covered_columns);
 
     // debug func
+    void brute_force();
     static void print_double_matrix(const std::vector<std::vector<double>>& input_matrix);
 
 };
