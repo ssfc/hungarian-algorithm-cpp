@@ -536,6 +536,12 @@ std::vector<int> CoverZeros::get_covered_rows()
 }
 
 
+std::vector<int> CoverZeros::get_covered_columns()
+{
+    return covered_columns;
+}
+
+
 void CoverZeros::print_int_vector(const std::string& vector_name, const std::vector<int>& input_vector)
 {
     cout << vector_name << ": ";

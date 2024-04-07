@@ -65,6 +65,8 @@ public:
 
     std::vector<int> get_covered_rows();
 
+    std::vector<int> get_covered_columns();
+
     // debug func
     static bool is_double_equal(double x, double y, double epsilon = 1e-9)
     {
