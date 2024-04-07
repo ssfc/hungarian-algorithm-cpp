@@ -88,7 +88,7 @@ Hungarian::Hungarian(const std::string &input_filename):
 }
 
 
-void Hungarian::hungarian_solve()
+double Hungarian::hungarian_solve()
 {
     std::vector<std::vector<double>> transformed_matrix = cost_matrix;
 
@@ -246,6 +246,17 @@ void Hungarian::hungarian_solve()
 
         iter_step4++;
     }
+
+    // Calculate total potential
+    double total_cost = 0;
+    for(auto element : work_assignment)
+    {
+        total_cost += cost_matrix[element.first][element.second];
+    }
+
+    cout << "total cost: " << total_cost << endl;
+
+    return total_cost;
 }
 
 

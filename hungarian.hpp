@@ -29,7 +29,7 @@ private:
 public:
     explicit Hungarian(const std::string& input_filename);
 
-    void hungarian_solve();
+    double hungarian_solve();
 
     void adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
             std::vector<int> covered_rows, std::vector<int> covered_columns);
