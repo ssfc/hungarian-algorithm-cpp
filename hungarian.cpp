@@ -433,7 +433,7 @@ int CoverZeros::find_row_without_choice(int choice_column_index)
 
 std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_column_index)
 {
-    std::vector<int> row_indices;
+    std::vector<size_t> row_indices;
     // Find row indices where zero_locations is true for choice_column_index
     for (size_t i = 0; i < square_matrix_size; i++)
     {
@@ -441,7 +441,7 @@ std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_c
             row_indices.push_back(i);
     }
 
-    for (int row_index : row_indices)
+    for (auto row_index : row_indices)
     {
         for (size_t column_index = 0; column_index < square_matrix_size; column_index++)
         {
@@ -455,7 +455,7 @@ std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_c
     // Cannot find optimal row and column. Return a random row and column.
     int row = row_indices[0];
 
-    std::vector<int> column_indices;
+    std::vector<size_t> column_indices;
     for (size_t column_index = 0; column_index < square_matrix_size; column_index++)
     {
         if (choices[row][column_index])
