@@ -197,6 +197,13 @@ void Hungarian::hungarian_solve()
         CoverZeros::print_int_vector("matched_rows", matched_rows);
         CoverZeros::print_int_vector("matched_columns", matched_columns);
 
+        // Make arbitrary selection
+        auto total_matched = matched_rows.size() + matched_columns.size();
+        if(total_matched == 0)
+        {
+            matched_rows, matched_columns = select_arbitrary_match(zero_locations);
+        }
+
         iter_step4++;
     }
 }
@@ -338,6 +345,12 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::mark_rows_and_columns(
 
     // Return the updated lists of marked rows and columns as a pair
     return std::make_pair(new_marked_rows, new_marked_columns);
+}
+
+
+void Hungarian::select_arbitrary_match(const std::vector<std::vector<int>>& zero_locations)
+{
+
 }
 
 
