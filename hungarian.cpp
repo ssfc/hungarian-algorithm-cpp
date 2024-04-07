@@ -286,6 +286,33 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std:
         }
     }
 
+    // Iterate over columns
+    for (size_t columnIndex = 0; columnIndex < zero_locations[0].size(); ++columnIndex)
+    {
+        int sum_of_column = 0;
+        int rowIndexOfSingleZero = -1; // This will store the index of the single 'True' if found
+
+        // Sum up the 'True' values in the column and find the row index if there is only one 'True'
+        for (size_t rowIndex = 0; rowIndex < zero_locations.size(); ++rowIndex)
+        {
+            if (zero_locations[rowIndex][columnIndex])
+            {
+                ++sum_of_column;
+                rowIndexOfSingleZero = rowIndex;
+            }
+        }
+
+        // If there is exactly one 'True' in this column
+        if (sum_of_column == 1)
+        {
+            std::tie(marked_rows, marked_columns) = mark_rows_and_columns(
+                    marked_rows,
+                    marked_columns,
+                    rowIndexOfSingleZero, // Row index of the single 'True'
+                    static_cast<int>(columnIndex)); // Column index
+        }
+    }
+
     return std::make_pair(marked_rows, marked_columns);
 }
 
