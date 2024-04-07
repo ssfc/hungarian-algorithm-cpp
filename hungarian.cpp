@@ -141,14 +141,7 @@ void Hungarian::hungarian_solve()
         }
 
         cout << "transformed_matrix: " << endl;
-        for(int i=0;i<transformed_matrix.size();i++)
-        {
-            for(int j=0;j<transformed_matrix[i].size();j++)
-            {
-                cout << transformed_matrix[i][j] << " ";
-            }
-            cout << endl;
-        }
+        print_double_matrix(transformed_matrix);
 
         iter_step3++;
     }
