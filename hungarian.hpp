@@ -21,6 +21,7 @@ private:
     int num_columns;
     int square_matrix_size;
     std::vector<std::vector<double>> cost_matrix;
+    double epsilon;
 
 public:
     explicit Hungarian(const std::string& input_filename);
@@ -50,6 +51,8 @@ private:
     std::vector<int> covered_rows;
     std::vector<int> covered_columns;
 
+    double epsilon;
+
 public:
     explicit CoverZeros(const std::vector<std::vector<double>>& input_matrix);
 
@@ -72,7 +75,7 @@ public:
     std::vector<int> get_covered_columns();
 
     // debug func
-    static bool is_double_equal(double x, double y, double epsilon = 1e-9)
+    bool is_double_equal(double x, double y) const
     {
         return std::abs(x - y) < epsilon;
     }

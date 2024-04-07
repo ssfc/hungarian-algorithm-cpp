@@ -12,7 +12,8 @@ using namespace std;
 Hungarian::Hungarian(const std::string &input_filename):
     num_rows(0),
     num_columns(0),
-    square_matrix_size(0)
+    square_matrix_size(0),
+    epsilon(1e-9)
 {
     std::ifstream map_file(input_filename);
     if (map_file.is_open())
@@ -161,7 +162,7 @@ void Hungarian::hungarian_solve()
         for (size_t j = 0; j < transformed_matrix[i].size(); ++j)
         {
             // Check if the value is close enough to zero to be considered zero
-            zero_locations[i][j] = std::fabs(transformed_matrix[i][j]) < 1e-9;
+            zero_locations[i][j] = std::fabs(transformed_matrix[i][j]) < epsilon;
         }
     }
     print_bool_matrix("zero_locations", zero_locations);
@@ -286,7 +287,8 @@ void Hungarian::print_bool_matrix(const string& matrix_name, const std::vector<s
 }
 
 
-CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix)
+CoverZeros::CoverZeros(const std::vector<std::vector<double>> &input_matrix):
+epsilon(1e-9)
 {
     // 找到输入矩阵中0的位置
     zero_locations.resize(input_matrix.size());
