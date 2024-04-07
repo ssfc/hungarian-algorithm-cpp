@@ -438,7 +438,7 @@ std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_c
     for (size_t i = 0; i < square_matrix_size; i++)
     {
         if (zero_locations[i][choice_column_index])
-            row_indices.push_back(static_cast<int>(i));
+            row_indices.push_back(i);
     }
 
     for (int row_index : row_indices)
@@ -447,7 +447,7 @@ std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_c
         {
             if (choices[row_index][column_index] && find_row_without_choice(column_index) != -1)
             {
-                return {row_index, static_cast<int>(column_index)};
+                return {row_index, column_index};
             }
         }
     }
