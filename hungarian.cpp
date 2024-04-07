@@ -206,6 +206,9 @@ void Hungarian::hungarian_solve()
             matched_columns = vector<int>{temp.second};
         }
 
+        // auto result = select_arbitrary_match(zero_locations);
+        // cout << "result:" << result.first << " " << result.second << endl;
+
         // Delete rows
         for (int row : matched_rows)
         {
