@@ -749,7 +749,7 @@ int CoverZeros::mark_new_columns_with_zeros_in_marked_rows()
         }
 
         // 检测这一列是否在已标记的行中存在0
-        std::set<int> rows_with_zero;
+        std::set<size_t> rows_with_zero;
         for(size_t i = 0; i < zero_locations.size(); ++i)
         {
             if(zero_locations[i][column_index])
@@ -887,7 +887,7 @@ int CoverZeros::find_marked_column_without_choice()
         if (std::all_of(choices.begin(), choices.end(),
                         [column_index](const std::vector<bool>& row){ return !row[column_index]; }))
         {
-            marked_column_without_choice_index = column_index;
+            marked_column_without_choice_index = static_cast<int>(column_index);
 
             break;
         }
