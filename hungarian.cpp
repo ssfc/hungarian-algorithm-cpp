@@ -417,20 +417,20 @@ std::pair<size_t, size_t> Hungarian::select_arbitrary_match(
                 int column_count = 0;
 
                 // Count zeros in the row
-                for (size_t k = 0; k < zero_locations[i].size(); ++k)
+                for (bool element : zero_locations[i])
                 {
-                    if (zero_locations[i][k]) row_count++;
+                    if (element) row_count++;
                 }
 
                 // Count zeros in the column
-                for (size_t k = 0; k < zero_locations.size(); ++k)
+                for (const auto & row : zero_locations)
                 {
-                    if (zero_locations[k][j]) column_count++;
+                    if (row[j]) column_count++;
                 }
 
                 // Add the sum of row and column zeros to the counts
                 zero_count.push_back(row_count + column_count);
-                coordinates.push_back({i, j}); // Store the coordinates as well
+                coordinates.emplace_back(i, j); // Store the coordinates as well
             }
         }
     }
