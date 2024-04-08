@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 
     desc.add_options()
             ("help", "produce help message")
-            ("map,m", po::value<std::string>()->required(), "input instance file")
+            ("instance,i", po::value<std::string>()->required(), "input instance file")
             ("output,o", po::value<std::string>()->default_value("../"), "output folder name");
 
     po::variables_map vm;
@@ -39,7 +39,9 @@ int main(int argc, char** argv)
     // Hungarian test("../instance/20x20.txt");
     // Hungarian test("../instance/50x50.txt");
     // Hungarian test("../instance/100x100.txt");
-    Hungarian test("../instance/100x100_seed_42.txt");
+    // Hungarian test("../instance/100x100_seed_42.txt");
+
+    Hungarian test(vm["instance"].as<std::string>());
     // std::cout << "hello" << std::endl;
 
     int start_time = clock();
@@ -55,3 +57,6 @@ int main(int argc, char** argv)
 
     return 0;
 }
+
+// test on windows platform:
+// ./hungarian_assign -i ../instance/100x100_seed_42.txt
