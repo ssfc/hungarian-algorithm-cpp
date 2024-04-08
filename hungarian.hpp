@@ -38,8 +38,8 @@ public:
     static std::pair<std::vector<int>, std::vector<int>> mark_rows_and_columns(
             const std::vector<int>& marked_rows,
             const std::vector<int>& marked_columns,
-            int row_index,
-            int column_index
+            size_t row_index,
+            size_t column_index
     );
 
     std::pair<int, int> select_arbitrary_match(const std::vector<std::vector<bool>>& zero_locations);

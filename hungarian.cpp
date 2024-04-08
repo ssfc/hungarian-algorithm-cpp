@@ -330,10 +330,10 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std:
         if (sum_of_row == 1)
         {
             // Find the index of the only `true` value in the row which stands for the column index
-            auto it = std::find(row.begin(), row.end(), true);
-            if (it != row.end())
+            auto iterator = std::find(row.begin(), row.end(), true);
+            if (iterator != row.end())
             {
-                int column_index = std::distance(row.begin(), it);
+                size_t column_index = std::distance(row.begin(), iterator);
 
                 // mark_rows_and_columns may look a bit different in C++ compared to Python since we would
                 // modify vectors by reference and not return new ones most likely, so let's use that approach here.
@@ -380,8 +380,8 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std:
 std::pair<std::vector<int>, std::vector<int>> Hungarian::mark_rows_and_columns(
         const std::vector<int>& marked_rows,
         const std::vector<int>& marked_columns,
-        int row_index,
-        int column_index)
+        size_t row_index,
+        size_t column_index)
 {
     // Create new vectors from the existing ones
     std::vector<int> new_marked_rows = marked_rows;
