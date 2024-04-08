@@ -31,7 +31,7 @@ public:
 
     double hungarian_solve();
 
-    void adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
+    static void adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
             std::vector<size_t> covered_rows, std::vector<size_t> covered_columns);
 
     static std::pair<std::vector<int>, std::vector<int>> find_matches(const std::vector<std::vector<bool>>& zero_locations);
