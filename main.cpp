@@ -15,12 +15,13 @@ int main()
     // std::cout << "hello" << std::endl;
 
     int start_time = clock();
+    // cout << "hhhhh" << endl;
 
     test.hungarian_solve();
     Hungarian::print_pair_vector("work assignment", test.get_work_assignment());
 
     double elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
-    std::cout << " elapsed time(s): " << elapsed_time;
+    cout << " elapsed time(s): " << elapsed_time;
 
     // test.brute_force();
 

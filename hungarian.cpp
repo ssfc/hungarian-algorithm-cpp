@@ -340,7 +340,7 @@ std::pair<std::vector<size_t>, std::vector<size_t>> Hungarian::find_matches(cons
                 std::tie(marked_rows, marked_columns) = mark_rows_and_columns(
                         marked_rows,
                         marked_columns,
-                        static_cast<int>(index), // row_index
+                        index, // row_index
                         column_index);
             }
         }
@@ -369,7 +369,7 @@ std::pair<std::vector<size_t>, std::vector<size_t>> Hungarian::find_matches(cons
                     marked_rows,
                     marked_columns,
                     rowIndexOfSingleZero, // Row index of the single 'True'
-                    static_cast<int>(columnIndex)); // Column index
+                    columnIndex); // Column index
         }
     }
 
