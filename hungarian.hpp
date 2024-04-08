@@ -82,7 +82,7 @@ public:
 
     bool choice_in_all_marked_columns();
 
-    int find_row_without_choice(int choice_column_index);
+    int find_row_without_choice(size_t choice_column_index);
 
     std::pair<int, int> find_best_choice_row_and_new_column(int choice_column_index);
 

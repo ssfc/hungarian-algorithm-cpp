@@ -824,7 +824,8 @@ bool CoverZeros::choice_in_all_marked_columns()
 }
 
 
-int CoverZeros::find_row_without_choice(int choice_column_index)
+int CoverZeros::find_row_without_choice(size_t choice_column_index)
+// 返回类型不能是size_t的原因是，需要用-1来验证错误
 {
     int row_without_choice_index = -1;
     for(size_t i = 0; i < zero_locations.size(); ++i){ // 遍历每一行
