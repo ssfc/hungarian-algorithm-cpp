@@ -16,6 +16,11 @@ int main(int argc, char** argv)
     // Declare the supported options.
     po::options_description desc("Allowed options");
 
+    desc.add_options()
+            ("help", "produce help message")
+            ("map,m", po::value<std::string>()->required(), "input instance file")
+            ("output,o", po::value<std::string>()->default_value("../"), "output folder name");
+
     // Hungarian test("../example3.txt");
     // Hungarian test("../example4_10x10.txt");
     // Hungarian test("../instance/example5_20x20.txt");
