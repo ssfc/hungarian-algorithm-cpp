@@ -261,7 +261,7 @@ double Hungarian::hungarian_solve()
 
 
 void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
-                           std::vector<int> covered_rows, std::vector<int> covered_columns)
+                           std::vector<size_t> covered_rows, std::vector<size_t> covered_columns)
 {
     // Calculate minimum uncovered number (min_uncovered_num)
     auto min_uncovered_num = DBL_MAX;
@@ -599,7 +599,7 @@ epsilon(1e-9)
     std::sort(marked_rows.begin(), marked_rows.end());
 
     // 计算差集
-    std::vector<int> covered_rows_temp;
+    std::vector<size_t> covered_rows_temp;
 
     std::set_difference(all_rows.begin(), all_rows.end(),
                         marked_rows.begin(), marked_rows.end(),
@@ -902,13 +902,13 @@ int CoverZeros::find_marked_column_without_choice()
 }
 
 
-std::vector<int> CoverZeros::get_covered_rows()
+std::vector<size_t> CoverZeros::get_covered_rows()
 {
     return covered_rows;
 }
 
 
-std::vector<int> CoverZeros::get_covered_columns()
+std::vector<size_t> CoverZeros::get_covered_columns()
 {
     return covered_columns;
 }
