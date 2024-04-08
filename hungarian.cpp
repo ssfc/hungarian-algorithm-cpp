@@ -282,7 +282,7 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
     // cout << "min_uncovered_num: " << min_uncovered_num << endl;
 
     // Add min_uncovered_num to every element in covered rows
-    for (int row : covered_rows)
+    for (auto row : covered_rows)
     {
         for (size_t column_index = 0; column_index < matrix[row].size(); ++column_index)
         {
@@ -292,7 +292,7 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
     }
 
     // Add min_uncovered_num to every element in covered columns
-    for (int column : covered_columns)
+    for (auto column : covered_columns)
     {
         for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
         {
