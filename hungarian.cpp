@@ -212,18 +212,18 @@ double Hungarian::hungarian_solve()
         // cout << "result:" << result.first << " " << result.second << endl;
 
         // Delete rows
-        for (int row : matched_rows)
+        for (auto row_index : matched_rows)
         {
             // Assuming all rows have the same size, which should be the case in any proper matrix
-            std::fill(zero_locations[row].begin(), zero_locations[row].end(), false);
+            std::fill(zero_locations[row_index].begin(), zero_locations[row_index].end(), false);
         }
 
         // Delete columns
-        for (int column : matched_columns)
+        for (auto column_index : matched_columns)
         {
             for (std::vector<bool>& row : zero_locations)
             {
-                row[column] = false;
+                row[column_index] = false;
             }
         }
 
@@ -358,7 +358,7 @@ std::pair<std::vector<size_t>, std::vector<size_t>> Hungarian::find_matches(cons
             if (zero_locations[rowIndex][columnIndex])
             {
                 ++sum_of_column;
-                rowIndexOfSingleZero = rowIndex;
+                rowIndexOfSingleZero = static_cast<int>(rowIndex);
             }
         }
 
