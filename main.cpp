@@ -50,5 +50,8 @@ int main(int argc, char** argv)
     return 0;
 }
 
-// test on windows platform:
+// Test on windows platform:
+// Compile
+// build by clion.
+// Run
 // ./hungarian_assign -i ../instance/100x100_seed_42.txt
