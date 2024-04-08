@@ -465,7 +465,7 @@ void Hungarian::set_results(const std::vector<std::pair<int, int>>& result_pairs
         // Check if the row and column indices are within the bounds of the original matrix
         if (row < num_rows && column < num_columns)
         {
-            work_assignment.push_back(std::make_pair(row, column));
+            work_assignment.emplace_back(row, column);
         }
     }
 }
@@ -479,10 +479,10 @@ std::vector<std::pair<int, int>> Hungarian::get_work_assignment()
 
 void Hungarian::brute_force()
 {
-    std::vector<int> work_assignment(square_matrix_size);
+    std::vector<int> bf_work_assignment(square_matrix_size);
     for (int i = 0; i < square_matrix_size; ++i)
     {
-        work_assignment[i] = i;
+        bf_work_assignment[i] = i;
     }
 
     double min_cost = std::numeric_limits<double>::max();
@@ -493,15 +493,15 @@ void Hungarian::brute_force()
         double current_cost = 0;
         for(int i = 0; i < square_matrix_size; i++)
         {
-            current_cost += cost_matrix[i][work_assignment[i]];
+            current_cost += cost_matrix[i][bf_work_assignment[i]];
         }
 
         if(current_cost < min_cost)
         {
             min_cost = current_cost;
-            best_work_assignment = work_assignment;
+            best_work_assignment = bf_work_assignment;
         }
-    } while(std::next_permutation(work_assignment.begin(), work_assignment.end()));
+    } while(std::next_permutation(bf_work_assignment.begin(), bf_work_assignment.end()));
 
     std::cout << "min cost: " << min_cost << std::endl;
     std::cout << "work assign: " << std::endl;
