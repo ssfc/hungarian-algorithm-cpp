@@ -202,9 +202,9 @@ double Hungarian::hungarian_solve()
         auto total_matched = matched_rows.size() + matched_columns.size();
         if(total_matched == 0)
         {
-            auto temp = select_arbitrary_match(zero_locations);
-            matched_rows = vector<int>{temp.first};
-            matched_columns = vector<int>{temp.second};
+            auto temp_result = select_arbitrary_match(zero_locations);
+            matched_rows = vector<int>{temp_result.first};
+            matched_columns = vector<int>{temp_result.second};
         }
 
         // 测试select_arbitrary_match的正确性
@@ -284,29 +284,29 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
     // Add min_uncovered_num to every element in covered rows
     for (auto row : covered_rows)
     {
-        for (size_t column_index = 0; column_index < matrix[row].size(); ++column_index)
+        for (double & element : matrix[row])
         {
             // Only add to elements not in covered columns
-            matrix[row][column_index] += min_uncovered_num;
+            element += min_uncovered_num;
         }
     }
 
     // Add min_uncovered_num to every element in covered columns
     for (auto column : covered_columns)
     {
-        for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
+        for (auto & row : matrix)
         {
             // Only add to elements not in covered rows
-            matrix[row_index][column] += min_uncovered_num;
+            row[column] += min_uncovered_num;
         }
     }
 
     // Subtract min_uncovered_num from element
-    for (size_t row_index = 0; row_index < matrix.size(); ++row_index)
+    for (auto & row : matrix)
     {
-        for (size_t column_index = 0; column_index < matrix[row_index].size(); ++column_index)
+        for (auto & element : row)
         {
-            matrix[row_index][column_index] -= min_uncovered_num;
+            element -= min_uncovered_num;
         }
     }
 }
