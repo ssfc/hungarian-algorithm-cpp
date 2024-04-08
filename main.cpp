@@ -14,7 +14,8 @@ int main()
     // Hungarian test("../instance/example5_20x20.txt");
     // Hungarian test("../instance/20x20.txt");
     // Hungarian test("../instance/50x50.txt");
-    Hungarian test("../instance/100x100.txt");
+    // Hungarian test("../instance/100x100.txt");
+    Hungarian test("../instance/200x200.txt");
     // std::cout << "hello" << std::endl;
 
     int start_time = clock();
