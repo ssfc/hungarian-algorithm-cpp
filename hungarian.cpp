@@ -5,6 +5,8 @@
 #include <cfloat>
 #include <cmath>
 #include <tuple>
+#include <chrono>
+#include <random>
 #include "hungarian.hpp"
 
 using namespace std;
@@ -866,6 +868,12 @@ std::pair<int, int> CoverZeros::find_best_choice_row_and_new_column(int choice_c
     }
 
     // Cannot find optimal row and column. Return a random row and column.
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine engine(seed);
+
+    // 打乱vector
+    std::shuffle(std::begin(row_indices), std::end(row_indices), engine);
+
     size_t row = row_indices[0];
 
     std::vector<size_t> column_indices;
