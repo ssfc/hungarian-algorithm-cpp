@@ -203,8 +203,8 @@ double Hungarian::hungarian_solve()
         if(total_matched == 0)
         {
             auto temp_result = select_arbitrary_match(zero_locations);
-            matched_rows = vector<int>{temp_result.first};
-            matched_columns = vector<int>{temp_result.second};
+            matched_rows = vector<size_t>{temp_result.first};
+            matched_columns = vector<size_t>{temp_result.second};
         }
 
         // 测试select_arbitrary_match的正确性
@@ -312,10 +312,10 @@ void Hungarian::adjust_matrix_by_min_uncovered_num(std::vector<std::vector<doubl
 }
 
 
-std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std::vector<std::vector<bool>>& zero_locations)
+std::pair<std::vector<size_t>, std::vector<size_t>> Hungarian::find_matches(const std::vector<std::vector<bool>>& zero_locations)
 {
-    vector<int> marked_rows;
-    vector<int> marked_columns;
+    vector<size_t> marked_rows;
+    vector<size_t> marked_columns;
 
     // Mark rows and columns with matches
     // Iterate over rows
@@ -377,15 +377,15 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::find_matches(const std:
 }
 
 
-std::pair<std::vector<int>, std::vector<int>> Hungarian::mark_rows_and_columns(
-        const std::vector<int>& marked_rows,
-        const std::vector<int>& marked_columns,
+std::pair<std::vector<size_t>, std::vector<size_t>> Hungarian::mark_rows_and_columns(
+        const std::vector<size_t>& marked_rows,
+        const std::vector<size_t>& marked_columns,
         size_t row_index,
         size_t column_index)
 {
     // Create new vectors from the existing ones
-    std::vector<int> new_marked_rows = marked_rows;
-    std::vector<int> new_marked_columns = marked_columns;
+    std::vector<size_t> new_marked_rows = marked_rows;
+    std::vector<size_t> new_marked_columns = marked_columns;
 
     // If row_index is not in marked_rows and column_index is not in marked_columns, mark them
     if (std::find(marked_rows.begin(), marked_rows.end(), row_index) == marked_rows.end() &&
@@ -399,7 +399,7 @@ std::pair<std::vector<int>, std::vector<int>> Hungarian::mark_rows_and_columns(
 }
 
 
-std::pair<int, int> Hungarian::select_arbitrary_match(
+std::pair<size_t, size_t> Hungarian::select_arbitrary_match(
         const std::vector<std::vector<bool>>& zero_locations)
 {
     // Set up a vector to keep track of the counts

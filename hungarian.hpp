@@ -34,15 +34,16 @@ public:
     static void adjust_matrix_by_min_uncovered_num(std::vector<std::vector<double>>& matrix,
             std::vector<size_t> covered_rows, std::vector<size_t> covered_columns);
 
-    static std::pair<std::vector<int>, std::vector<int>> find_matches(const std::vector<std::vector<bool>>& zero_locations);
-    static std::pair<std::vector<int>, std::vector<int>> mark_rows_and_columns(
-            const std::vector<int>& marked_rows,
-            const std::vector<int>& marked_columns,
+    static std::pair<std::vector<size_t>, std::vector<size_t>> find_matches(const std::vector<std::vector<bool>>& zero_locations);
+
+    static std::pair<std::vector<size_t>, std::vector<size_t>> mark_rows_and_columns(
+            const std::vector<size_t>& marked_rows,
+            const std::vector<size_t>& marked_columns,
             size_t row_index,
             size_t column_index
     );
 
-    std::pair<int, int> select_arbitrary_match(const std::vector<std::vector<bool>>& zero_locations);
+    static std::pair<size_t, size_t> select_arbitrary_match(const std::vector<std::vector<bool>>& zero_locations);
 
     void set_results(const std::vector<std::pair<int, int>>& result_pairs);
 
