@@ -21,6 +21,18 @@ int main(int argc, char** argv)
             ("map,m", po::value<std::string>()->required(), "input instance file")
             ("output,o", po::value<std::string>()->default_value("../"), "output folder name");
 
+    po::variables_map vm;
+    po::store(po::parse_command_line(argc, argv, desc), vm);
+
+    if (vm.count("help"))
+    {
+        std::cout << desc << std::endl;
+
+        return 1;
+    }
+
+    po::notify(vm);
+
     // Hungarian test("../example3.txt");
     // Hungarian test("../example4_10x10.txt");
     // Hungarian test("../instance/example5_20x20.txt");
