@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.27)
-project(hungarian_algorithm_cpp)
+project(hungarian_cpp_from_python)
 
 set(CMAKE_CXX_STANDARD 14)
 
