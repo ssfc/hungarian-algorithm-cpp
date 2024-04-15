@@ -54,5 +54,8 @@ int main(int argc, char** argv)
 // Compile
 // build by clion.
 // Run
+// ./hungarian_assign -i ../instance/9x10_seed_42.txt
+// ./hungarian_assign -i ../instance/10x9_seed_42.txt
+// ./hungarian_assign -i ../instance/10x10_seed_42.txt
 // ./hungarian_assign -i ../instance/100x100_seed_42.txt
 // ./hungarian_assign -i ../instance/200x200_seed_42.txt
